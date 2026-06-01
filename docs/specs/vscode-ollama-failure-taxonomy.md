@@ -83,11 +83,13 @@ Examples:
 - prints JSON tool call as plain text
 - explains intended tool usage without issuing tool call
 - returns `does not support tools`
+- asks a clarification question instead of starting a bounded task that already contains enough instructions
 
 Signals:
 
 - negative compatibility result in the report
 - IDE chat appears coherent, but no real file or command actions occur
+- the reply stays conversational and never transitions into repository reads, file writes, or command execution
 
 Checks:
 

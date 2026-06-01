@@ -10,3 +10,4 @@
 - Environment matrix and failure taxonomy for IDE agent validation runs.
 - Model-by-model run log and reusable E2E run record template.
 - Preflight-backed `run-001` record for `gemma4:e4b` and refreshed candidate log with `qwen3:8b-q4_K_M`.
+- Recorded failed `run-001` IDE outcome for `gemma4:e4b` and refined failure taxonomy for clarification-only behavior.
