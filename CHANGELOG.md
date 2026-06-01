@@ -41,3 +41,23 @@
 - Added a strict full-GPU gate for the Windows coder track, recorded the
   expanded eligibility results, excluded split CPU/GPU models, and selected
   `qwen2.5-coder:14b` as the next bounded-fixture candidate.
+- Recorded the failed `qwen2.5-coder:14b` full-GPU preflight and tightened the
+  headless runner so printed tool-call JSON cannot pass as real Bash execution.
+- Selected the smaller `qwen2.5-coder:7b` Ollama tag as the pending replacement
+  third coder candidate for full-GPU and structured-tool verification.
+- Recorded that `qwen2.5-coder:7b` fits fully in GPU memory but still fails the
+  Claude Code structured tool loop by printing Bash and Read JSON as text.
+- Added a reproducible `granite4.1:8b-ctx32k` Ollama profile after the upstream
+  `131072` context default forced CPU KV-cache placement on the RX 6800.
+- Recorded the tuned Granite profile as the third full-GPU coder candidate:
+  it passed handshake, structured Bash execution, repository read, file
+  creation, and git-status grounding with `41/41` layers on GPU.
+- Added `ctx32k` placement profiles for the larger rejected models and recorded
+  that context tuning reduced CPU spill without returning them to the strict
+  RX 6800 full-GPU shortlist.
+- Added a fixed-step context sweep for the three favored models and selected
+  model-specific placement profiles: Qwen `40960`, Gemma `131072`, and Granite
+  `32768`.
+- Recorded that Gemma's current multi-step agent failure reproduces at both
+  `ctx32k` and `ctx128k`, so its placement optimum is not an agent-qualified
+  default.

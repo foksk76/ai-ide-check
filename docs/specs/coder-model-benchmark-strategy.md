@@ -135,6 +135,7 @@ Captured from local Ollama `/api/show`:
 | `qwen3.6:latest` | `36.0B` | `Q4_K_M` | completion, vision, tools, thinking | High-priority local coder candidate; require local evidence |
 | `gemma4:26b` | `25.8B` | `Q4_K_M` | completion, vision, tools, thinking | Secondary local coder candidate; require local evidence |
 | `gemma4:e4b` | `8.0B` | `Q4_K_M` | completion, vision, audio, tools, thinking | Existing secondary Claude Code candidate; require local coder-task evidence |
+| `granite4.1:8b-ctx32k` | `8.8B` | `Q4_K_M` | completion, tools | Local RX 6800 profile derived from `granite4.1:8b`; require exact-profile local evidence |
 
 ## Current Evidence
 
@@ -142,8 +143,9 @@ Existing local headless evidence covers tool-loop viability, not coding quality:
 
 | Model | Existing headless agent result | Coder-quality conclusion |
 |---|---|---|
-| `qwen3:8b-q4_K_M` | Pass | Eligible for coder benchmark |
-| `gemma4:e4b` | Mechanical pass with final-answer wording defect | Eligible with semantic review |
+| `qwen3:8b-q4_K_M-ctx40k` | Pass at effective `40960` context | Eligible for coder benchmark |
+| `gemma4:e4b-ctx128k` | Handshake and Bash pass; current agent control stops after `Read` | Eligible for bounded benchmarks; multi-step agent reliability unresolved |
+| `granite4.1:8b-ctx32k` | Pass with stand-specific context profile | Eligible with semantic and encoding review |
 | `llama3.2:latest` | Empty completed turns | Reject for Claude Code coder agent mode |
 
 The larger local models have not yet completed the same Claude Code headless
@@ -174,10 +176,11 @@ Keep:
 
 | Model | Full-GPU evidence |
 |---|---|
-| `qwen3:8b-q4_K_M` | `offloaded 37/37 layers to GPU` |
-| `gemma4:e4b` | `offloaded 43/43 layers to GPU` |
+| `qwen3:8b-q4_K_M-ctx40k` | `offloaded 37/37 layers to GPU` |
+| `gemma4:e4b-ctx128k` | `offloaded 43/43 layers to GPU` |
+| `granite4.1:8b-ctx32k` | `offloaded 41/41 layers to GPU` |
 
-Add as the third candidate:
+The initially selected third candidate was:
 
 ```text
 qwen2.5-coder:14b
@@ -190,9 +193,115 @@ Why:
 - approximately `9.0 GB` Ollama artifact size
 - better fit for a `16 GB` RX 6800 than the excluded candidates
 
-The official Ollama tag advertises a `32K` context window. Use this candidate
-for bounded coder fixtures first. Require a measured `100% GPU` placement before
-promotion.
+The full-GPU preflight rejected it:
+
+| Check | Result |
+|---|---|
+| Placement | `18%/82% CPU/GPU`, fail |
+| Offload | `39/49` layers on GPU, fail |
+| Claude Code tool stage | Printed Bash JSON as text, fail |
+| Claude Code agent stage | Printed Read JSON as text and made no edit, fail |
+
+Do not schedule `qwen2.5-coder:14b` for the coder fixture suite.
+
+Replacement third candidate:
+
+```text
+qwen2.5-coder:7b
+```
+
+Why:
+
+- official Ollama library tag with tools support
+- coder-specialized family
+- approximately `4.7 GB` artifact size
+- `32K` context window
+- substantially more RX 6800 VRAM headroom than the rejected `14b` variant
+
+The replacement preflight also rejected this model:
+
+| Check | Result |
+|---|---|
+| Placement | `100% GPU`, `29/29` layers offloaded, pass |
+| Claude Code handshake | Passed |
+| Claude Code tool stage | Printed Bash JSON as text, fail |
+| Claude Code agent stage | Printed Read JSON as text and made no edit, fail |
+
+Do not schedule `qwen2.5-coder:7b` for the coder fixture suite. Its tool-loop
+failure reproduces the historical Linux result for the related
+`qwen2.5-coder:7b-instruct-q4_K_M` tag.
+
+Replacement third candidate:
+
+```text
+granite4.1:8b-ctx32k
+```
+
+The upstream `granite4.1:8b` tag advertises coding tasks, function calling,
+structured JSON, and Claude Code integration. Its default `131072` token
+context profile failed the full-GPU rule: Ollama reported `65%/35% CPU/GPU`,
+allocated a `20480 MiB` CPU KV cache, and offloaded `0/41` model layers.
+
+The stand-specific local profile bounds `num_ctx` to `32768`. It passed the
+full-GPU and structured tool-use gates:
+
+| Check | Result |
+|---|---|
+| Placement | `100% GPU`, `41/41` layers offloaded, pass |
+| Claude Code handshake | Passed |
+| Claude Code tool stage | Executed structured Bash tool call, pass |
+| Claude Code agent stage | Read repository, created file, ran Bash, observed git status, pass |
+
+Keep an explicit semantic and encoding review in the coder fixture suite. The
+preflight proof file contained a mojibake rendering of a non-ASCII hyphen.
+
+## Context Profile Experiment
+
+Stand-specific context profiling can improve an already rejected model.
+
+The successful example is `granite4.1:8b`: its upstream `131072` context
+profile forced CPU KV-cache placement, while the local `ctx32k` profile passed
+the full-GPU gate and structured tool loop.
+
+The same `ctx32k` experiment improved but did not recover the larger rejected
+models:
+
+| Upstream model | Upstream placement | `ctx32k` placement | `ctx32k` offload | Decision |
+|---|---|---|---|---|
+| `qwen3-coder:latest` | `67%/33% CPU/GPU` | `32%/68% CPU/GPU` | `33/49` layers on GPU | Keep excluded |
+| `qwen3.6:latest` | `58%/42% CPU/GPU` | `47%/53% CPU/GPU` | `23/41` layers on GPU | Keep excluded |
+| `gemma4:26b` | `44%/56% CPU/GPU` | `29%/71% CPU/GPU` | `24/31` layers on GPU | Keep excluded |
+
+All three profiles completed the handshake prompt, but none met the strict
+`100% GPU` rule. Do not schedule their expensive tool and agent stages on this
+stand.
+
+For the Claude Code headless workflow, treat `32768` as the practical minimum
+profile unless a smaller context is separately proven to fit the runtime
+system prompt. Context profiling does not fix structured tool-use failures:
+`qwen2.5-coder:7b` already fits at `100% GPU` and still fails the tool loop.
+
+## Favorite-Model Context Sweep
+
+The favored models require different stand-specific context profiles.
+
+Use a fixed `8192` context step starting at `32768`. Stop after the first CPU
+spill or the upstream model context limit. Run only the cheap handshake stage
+during the sweep; reserve full tool and agent validation for selected
+profiles.
+
+| Model | Selected profile | Optimal ctx | Placement | Agent qualification |
+|---|---|---:|---|---|
+| `qwen3:8b-q4_K_M` | `qwen3:8b-q4_K_M-ctx40k` | `40960` | `100% GPU` | Existing full-gate pass at effective `40960` |
+| `gemma4:e4b` | `gemma4:e4b-ctx128k` | `131072` | `100% GPU` | Unresolved: current `ctx32k` and `ctx128k` agent controls both stopped after `Read` |
+| `granite4.1:8b` | `granite4.1:8b-ctx32k` | `32768` | `100% GPU` | Full-gate pass |
+
+The Granite next step, `40960`, produces `9%/91% CPU/GPU`. Qwen requests above
+`40960` are capped to `40960` by the upstream tag. Gemma remains at `100% GPU`
+through its advertised `131072` maximum.
+
+Treat Gemma's `131072` result as a placement optimum, not an agent-qualified
+default. VRAM fit and multi-step agent reliability are separate gates.
 
 ## Local Coder Benchmark Ladder
 
@@ -281,9 +390,9 @@ After local gating:
 
 For `win11-local-rx6800`:
 
-1. `qwen3:8b-q4_K_M`
-2. `gemma4:e4b`
-3. `qwen2.5-coder:14b` after pull and full-GPU verification
+1. `qwen3:8b-q4_K_M-ctx40k`
+2. `gemma4:e4b-ctx128k` for bounded benchmarks; agent reliability unresolved
+3. `granite4.1:8b-ctx32k`
 
 Keep `llama3.2:latest` as a negative control only.
 

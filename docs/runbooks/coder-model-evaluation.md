@@ -10,18 +10,21 @@ Use the strategy in:
 
 ## Phase 1: Headless Eligibility
 
-Pull and verify the third candidate:
+The first proposed third candidate was:
 
-```powershell
-ollama pull qwen2.5-coder:14b
+```text
+qwen2.5-coder:14b
 ```
 
-Run the Claude Code CLI baseline for the full-GPU coder shortlist:
+It is excluded: local preflight observed `18%/82% CPU/GPU`, and Claude Code
+received printed tool-call JSON instead of structured tool execution.
+
+Run the Claude Code CLI baseline for the current full-GPU coder shortlist:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1 `
   -StandId win11-local-rx6800 `
-  -Models qwen3:8b-q4_K_M,gemma4:e4b,qwen2.5-coder:14b `
+  -Models qwen3:8b-q4_K_M-ctx40k,gemma4:e4b-ctx128k,granite4.1:8b-ctx32k `
   -Stages handshake,tool,agent `
   -RequireFullGpu `
   -TimeoutSeconds 1200
@@ -41,9 +44,92 @@ Exclude from further coder runs on this stand:
 qwen3-coder:latest
 qwen3.6:latest
 gemma4:26b
+qwen2.5-coder:14b
+qwen2.5-coder:7b
 ```
 
-They passed the tool loop but used split CPU and GPU placement.
+The larger models passed the tool loop but used split CPU and GPU placement.
+
+`qwen2.5-coder:14b` failed both split-placement and real Claude Code tool-loop
+gates.
+
+`qwen2.5-coder:7b` passed the full-GPU placement gate with `100% GPU` and
+`29/29` layers offloaded. It is still excluded because it printed Bash and
+Read requests as plain JSON text instead of executing structured tool calls.
+
+Use the stand-specific Granite profile as the third shortlist candidate:
+
+```powershell
+ollama pull granite4.1:8b
+ollama create granite4.1:8b-ctx32k `
+  -f tools\modelfiles\granite4.1-8b-ctx32k.Modelfile
+```
+
+Do not use the upstream `granite4.1:8b` tag directly for this stand. Its
+default `131072` token context allocated a `20480 MiB` CPU KV cache, offloaded
+`0/41` layers to GPU, and produced `65%/35% CPU/GPU` placement.
+
+The local `granite4.1:8b-ctx32k` profile passed handshake, real Bash tool
+execution, repository read, file creation, and git-status grounding at
+`100% GPU`. Keep semantic and encoding review enabled: the preflight proof
+file contained a mojibake rendering of a non-ASCII hyphen.
+
+### Optional Profile Preflight
+
+Context profiling improved GPU placement for the larger excluded models but
+did not return them to the strict shortlist:
+
+```powershell
+ollama create qwen3-coder:latest-ctx32k `
+  -f tools\modelfiles\qwen3-coder-latest-ctx32k.Modelfile
+ollama create qwen3.6:latest-ctx32k `
+  -f tools\modelfiles\qwen3.6-latest-ctx32k.Modelfile
+ollama create gemma4:26b-ctx32k `
+  -f tools\modelfiles\gemma4-26b-ctx32k.Modelfile
+
+powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1 `
+  -StandId win11-local-rx6800 `
+  -Models qwen3-coder:latest-ctx32k,qwen3.6:latest-ctx32k,gemma4:26b-ctx32k `
+  -Stages handshake `
+  -RequireFullGpu `
+  -TimeoutSeconds 1200
+```
+
+Observed tuned placement:
+
+| Model | Placement | Decision |
+|---|---|---|
+| `qwen3-coder:latest-ctx32k` | `32%/68% CPU/GPU` | Keep excluded |
+| `qwen3.6:latest-ctx32k` | `47%/53% CPU/GPU` | Keep excluded |
+| `gemma4:26b-ctx32k` | `29%/71% CPU/GPU` | Keep excluded |
+
+Do not schedule expensive stages after a strict placement failure.
+
+### Favorite-Model Context Profiles
+
+Use an `8192` fixed step and handshake-only sweeps to select placement
+profiles. The current results are:
+
+| Model | Selected profile | ctx | Placement | Notes |
+|---|---|---:|---|---|
+| `qwen3:8b-q4_K_M` | `qwen3:8b-q4_K_M-ctx40k` | `40960` | `100% GPU` | Upstream maximum |
+| `gemma4:e4b` | `gemma4:e4b-ctx128k` | `131072` | `100% GPU` | Placement optimum only |
+| `granite4.1:8b` | `granite4.1:8b-ctx32k` | `32768` | `100% GPU` | `40960` spills to CPU |
+
+Build the selected local profiles:
+
+```powershell
+ollama create qwen3:8b-q4_K_M-ctx40k `
+  -f tools\modelfiles\qwen3-8b-q4_K_M-ctx40k.Modelfile
+ollama create gemma4:e4b-ctx128k `
+  -f tools\modelfiles\gemma4-e4b-ctx128k.Modelfile
+ollama create granite4.1:8b-ctx32k `
+  -f tools\modelfiles\granite4.1-8b-ctx32k.Modelfile
+```
+
+Gemma needs explicit reliability handling: current full-gate controls at both
+`32768` and `131072` passed handshake and Bash stages but stopped after the
+first `Read` tool in agent stage. This is not a context-size regression.
 
 ## Phase 2: Local Coder Fixture
 

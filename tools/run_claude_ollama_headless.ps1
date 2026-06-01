@@ -168,7 +168,11 @@ function Invoke-ClaudeStage {
         "agent" { "HEADLESS_AGENT_OK True" }
     }
     $markerObserved = $transcript.Contains($expectedMarker)
+    $bashToolUseObserved = $transcript.Contains('"type":"tool_use"') -and $transcript.Contains('"name":"Bash"')
     $passed = (-not $timedOut) -and ($exitCode -eq 0) -and $markerObserved
+    if ($Stage -eq "tool") {
+        $passed = $passed -and $bashToolUseObserved
+    }
     $ollamaPs = Get-Content -LiteralPath $ollamaPsPath -Raw
     $fullGpuObserved = $ollamaPs.Contains($Model) -and $ollamaPs.Contains("100% GPU")
     if ($RequireFullGpu) {
@@ -193,6 +197,7 @@ function Invoke-ClaudeStage {
         exit_code = $exitCode
         expected_marker = $expectedMarker
         marker_observed = $markerObserved
+        bash_tool_use_observed = $bashToolUseObserved
         full_gpu_required = [bool]$RequireFullGpu
         full_gpu_observed = $fullGpuObserved
         repository_read_observed = $readObserved
