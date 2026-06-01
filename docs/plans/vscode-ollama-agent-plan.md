@@ -1,228 +1,222 @@
-# Implementation Plan: VS Code + Ollama Agent Validation
+# Implementation Plan: Local Claude Code + Ollama Validation
 
-## Overview
+## Objective
 
-This plan turns the repository into a validation-first toolkit for proving whether an IDE agent backed by Ollama can do real work in a repository.
+Select a practical local coding model for `win11-local-rx6800` with evidence
+from real Claude Code tool loops, repository edits, tests, and processor
+placement.
 
-The immediate priority is not deployment automation. It is a reliable acceptance workflow with clear pass/fail evidence.
+Use Claude Code CLI headless mode as the primary repeatable path. Keep Claude
+Code for VS Code as a separate comparison layer.
 
-## Architecture Decisions
+## Current Position
 
-- Use Ollama compatibility checks as a preflight gate before IDE testing.
-- Treat structured tool use through the Anthropic-compatible endpoint as the main compatibility requirement.
-- Keep stage artifacts in git and require `CHANGELOG.md` updates before any push.
-- Use `ssh-agent` access to `root@bruter` for targeted end-to-end API diagnostics when failures are unclear.
-- Separate validation artifacts from future deployment automation.
+Completed foundations:
 
-## Phase 1: Foundation Documents
+- multi-stand validation contract
+- Windows 11 single-host stand snapshot
+- Ollama Anthropic Messages surface probe
+- Claude Code CLI headless runtime gate
+- strict `ollama ps -> 100% GPU` rule for coder tasks
+- model-specific context profiling
+- two-task coder fixture suite with independent tests
+- first coder-quality pass and contract cross-check
 
-### Task 1: Define the integration contract
+Current preliminary coder-quality order:
 
-Acceptance:
+1. `gpt-oss:20b-ctx32k`
+2. `ministral-3:8b-ctx32k`
+3. `gemma4:e4b-ctx128k`, capability observed but repeatability unresolved
+4. `granite4.1:8b-ctx32k`
+5. `qwen3:8b-q4_K_M-ctx40k`, retained as a control after its `0/2` fixture result
 
-- contract covers inputs, behavior, outputs, pass/fail, and constraints
+Evidence:
 
-Verify:
+- [Agent validation contract](../contracts/vscode-ollama-agent-contract.md)
+- [Coder benchmark strategy](../specs/coder-model-benchmark-strategy.md)
+- [First coder fixture pass](../runbooks/runs/2026-06-02-coder-fixture-first-pass.md)
 
-- review [docs/contracts/vscode-ollama-agent-contract.md](/home/krl/git/check_sip/docs/contracts/vscode-ollama-agent-contract.md:1)
+## Decision Rules
 
-Dependencies:
+A model advances only when all applicable gates pass:
 
-- None
+| Gate | Required evidence |
+|---|---|
+| Placement | `ollama ps -> 100% GPU` on `win11-local-rx6800` |
+| Runtime | Real structured tools, file operation, shell command, grounded final answer |
+| Coder quality | External tests pass; fixture tests remain unchanged |
+| Reliability | Repeated attempts are measured; one attractive pass is not enough |
+| IDE comparison | VS Code result is recorded separately from CLI evidence |
 
-### Task 2: Define the stage spec
+Do not treat a fixture score as a full agent-contract verdict. The current
+fixtures name the source file explicitly and do not prove autonomous
+repository discovery.
 
-Acceptance:
+## Phase 1: Full CLI Contract For The Leaders
 
-- spec covers objective, commands, structure, testing strategy, boundaries, and success criteria
+Status: next.
 
-Verify:
+Run the complete CLI headless contract scenario for:
 
-- review [docs/specs/vscode-ollama-agent-spec.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-agent-spec.md:1)
+1. `gpt-oss:20b-ctx32k`
+2. `ministral-3:8b-ctx32k`
 
-Dependencies:
+The prompt must require:
 
-- Task 1
+- repository context reads
+- autonomous relevant-file selection without naming the implementation file
+- at least one edit
+- test execution
+- interpretation of the real test result
+- final answer matching Git state and command output
 
-### Task 3: Define the stage plan
+Record:
 
-Acceptance:
-
-- plan breaks the work into ordered stages with verification points
-
-Verify:
-
-- review [docs/plans/vscode-ollama-agent-plan.md](/home/krl/git/check_sip/docs/plans/vscode-ollama-agent-plan.md:1)
-
-Dependencies:
-
-- Task 1
-- Task 2
-
-### Checkpoint: Docs Baseline
-
-- commit contract/spec/plan
-- update `CHANGELOG.md`
-- verify `git status --short` is clean after commit
-
-## Phase 2: Acceptance Scenario Design
-
-### Task 4: Define the canonical IDE task
-
-Acceptance:
-
-- one concrete repository task is chosen for all validation runs
-- task requires reading context, editing files, running a command, and returning a final answer
-
-Verify:
-
-- new scenario draft lists exact prompt and expected agent actions
-
-Dependencies:
-
-- Phase 1 complete
-
-### Task 5: Write the acceptance scenario document
+- exact prompt
+- versions and endpoint
+- environment overrides
+- files read and changed
+- commands executed
+- `ollama ps`
+- final answer summary
+- pass or fail
+- primary failure class when failed
 
 Acceptance:
 
-- scenario includes exact start prompt
-- scenario includes expected tool classes
-- scenario includes pass/fail checklist
+- both leaders receive at least one full-contract attempt
+- GPT-OSS remains the default candidate only if its final answer is grounded
+- Ministral remains in the race only if its retry behavior is measured, not
+  hand-waved away
 
-Verify:
+## Phase 2: Reliability Pass
 
-- a second operator can follow the document without verbal guidance
+Status: after Phase 1.
 
-Dependencies:
+Extend `tools/run_coder_fixture_bench.ps1` with repeated attempts and promoted
+contract metadata.
 
-- Task 4
+Minimum run:
 
-### Checkpoint: Scenario Ready
+- `3` attempts per task
+- `gpt-oss:20b-ctx32k`
+- `ministral-3:8b-ctx32k`
+- `gemma4:e4b-ctx128k` as an instability control
 
-- commit scenario docs
-- update `CHANGELOG.md`
-- confirm the scenario can be run manually
+Record per model:
 
-## Phase 3: Environment Matrix and Failure Taxonomy
-
-### Task 6: Define the environment matrix
-
-Acceptance:
-
-- matrix lists all required components and mandatory properties
-- model endpoint, VS Code, extension, and workspace assumptions are explicit
-
-Verify:
-
-- environment matrix can explain what is misconfigured before a run starts
-
-Dependencies:
-
-- Phase 2 complete
-
-### Task 7: Define the failure taxonomy
+- pass rate
+- median and spread of elapsed time
+- timeout rate
+- structured-tool failure rate
+- final-answer mismatch rate
+- full-GPU placement rate
 
 Acceptance:
 
-- failures are grouped by config, API, model, tool use, file ops, command execution, and final response integrity
+- ranking is based on repeated results
+- latency is reported as a distribution, not a single stopwatch reading
+- Gemma is promoted only if its textual pseudo-tool regression stops
 
-Verify:
+## Phase 3: Broader Local Coder Suite
 
-- any failed run can be placed in exactly one primary failure bucket
+Status: after Phase 2.
 
-Dependencies:
+Add small deterministic fixtures for:
 
-- Task 5
+- multi-file bug fix
+- one repair attempt after a failing test
+- configuration edit
+- regression diagnosis
+- refactor preserving tests
 
-### Checkpoint: Diagnosis Layer Ready
-
-- commit diagnostics docs
-- update `CHANGELOG.md`
-- review whether tcpdump capture instructions need refinement
-
-## Phase 4: Real Model Validation
-
-### Task 8: Preflight candidate models
-
-Acceptance:
-
-- candidate models are checked with `tools/check_ollama_model_compat.py`
-- shortlist and blacklist are updated from factual results
-
-Verify:
-
-- compatibility report exists and is current
-
-Dependencies:
-
-- Phase 3 complete
-
-### Task 9: Run the IDE scenario against shortlisted models
+Keep fixtures dependency-free where practical. Prefer Python standard library
+tests for the first expansion.
 
 Acceptance:
 
-- each run records model, prompt, files changed, commands executed, and final answer
-- pass/fail verdict is documented for every model tested
+- at least one task requires discovering the relevant implementation file
+- at least one task requires interpreting and repairing a failed test
+- external checks verify code state independently from the model response
 
-Verify:
+## Phase 4: VS Code Comparison
 
-- results can distinguish true agent compatibility from plain chat compatibility
+Status: after one CLI leader is stable.
 
-Dependencies:
+Run the bounded comparison through Claude Code for VS Code with the same local
+Ollama endpoint.
 
-- Task 8
+Start with:
 
-### Task 10: Use remote traffic capture for ambiguous failures
+1. CLI winner
+2. CLI runner-up
 
-Acceptance:
+Record VS Code evidence separately:
 
-- when a run is inconclusive, diagnostic capture can be taken on `bruter`
-- capture instructions are tied to the failing time window and port
-
-Verify:
-
-- operator can correlate IDE action timing with server-side traffic
-
-Dependencies:
-
-- Task 9 as needed
-
-### Checkpoint: Validation Evidence Complete
-
-- commit run evidence and conclusions
-- update `CHANGELOG.md`
-- prepare push only after reviewing staged changes
-
-## Phase 5: Transition Toward Deployment Tooling
-
-### Task 11: Identify reusable automation
+- VS Code version
+- Claude Code extension version
+- selected model
+- exact prompt
+- files read and changed
+- commands executed
+- final answer
+- pass or fail
+- failure class
 
 Acceptance:
 
-- separate what should remain documentation from what should become scripts or templates
+- IDE behavior can be compared with CLI behavior without overwriting it
+- IDE-only failures are classified as configuration, orchestration, or
+  extension-path regressions
 
-Verify:
+## Phase 5: External Benchmarks
 
-- next-stage backlog is written down
+Status: only after local gates.
 
-Dependencies:
+Use external benchmarks as supporting evidence:
 
-- Phase 4 complete
+1. Aider Polyglot for editing
+2. bounded LiveCodeBench subset for generation and repair
+3. BigCodeBench Instruct for practical function-level work
+4. SWE-bench Live only when runtime cost is acceptable
 
-## Risks and Mitigations
+Do not import public scores as local scores unless model identity, precision,
+benchmark version, prompt, scaffold, and attempt count match.
 
-| Risk | Impact | Mitigation |
-|---|---|---|
-| Model advertises tools but only prints JSON | High | Keep `/v1/messages` structured tool-use as the real gate |
-| VS Code config differs from documented assumptions | High | Create environment matrix before mass testing |
-| Remote failures are hard to localize | Medium | Use `ssh root@bruter` checks and targeted `tcpdump` capture |
-| Validation scope drifts into deployment work too early | Medium | Keep stage boundaries explicit in docs and commits |
+## Automation Backlog
 
-## Recommended Next Action
+Improve `tools/run_coder_fixture_bench.ps1`:
 
-Create the canonical acceptance scenario document next, then run it first against:
+- add an attempt-count parameter
+- calculate aggregated pass rate and latency distribution
+- promote final-answer review markers
+- record failure class
+- add an autonomous-discovery fixture mode
+- retain raw transcripts under `.artifacts/`
 
-1. `gemma4:e4b`
-2. `llama3.2:latest`
-3. `qwen2.5-coder:7b-instruct-q4_K_M` as a known negative control
+Keep concise decision evidence under:
+
+```text
+docs/runbooks/runs/
+```
+
+## Checkpoints
+
+After each completed phase:
+
+1. Update `CHANGELOG.md`.
+2. Review `git diff --staged`.
+3. Commit the stage boundary.
+4. Push only after explicit review or request.
+
+## Immediate Next Action
+
+Create and run one full CLI contract fixture for:
+
+```text
+gpt-oss:20b-ctx32k
+ministral-3:8b-ctx32k
+```
+
+The fixture must not name the implementation file. It should force repository
+inspection, edit the discovered file, run tests, and report the actual result.

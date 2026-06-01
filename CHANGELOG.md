@@ -82,3 +82,7 @@
 - Cross-checked the first coder fixture pass against the agent contract,
   documented the intentionally narrower fixture verdict, classified observed
   grounding failures, and updated the preliminary next-model order.
+- Replaced the historical IDE-first implementation plan with the current
+  Windows local roadmap: full CLI contract runs for GPT-OSS and Ministral,
+  repeated reliability measurement, broader coder fixtures, and a separate
+  VS Code comparison layer.
