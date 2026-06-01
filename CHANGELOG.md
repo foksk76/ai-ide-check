@@ -13,3 +13,4 @@
 - Recorded failed `run-001` IDE outcome for `gemma4:e4b` and refined failure taxonomy for clarification-only behavior.
 - Prepared preflight-backed `run-002` package for `llama3.2:latest`.
 - Added `docs/runbooks/ide-agent-smoke-test.md` and refreshed the compatibility report.
+- Added server-side `bruter` API debug findings with raw request/response evidence.
