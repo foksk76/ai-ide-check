@@ -157,6 +157,7 @@ def merge_ranges(intervals):
 
 ## Подробности и источники
 
+- [PDF-версия отчёта от 2026-06-02](docs/reports/2026-06-02-local-model-evaluation-report.pdf)
 - [План следующих этапов](docs/plans/vscode-ollama-agent-plan.md)
 - [Контракт проверки](docs/contracts/vscode-ollama-agent-contract.md)
 - [Стратегия оценки](docs/specs/coder-model-benchmark-strategy.md)

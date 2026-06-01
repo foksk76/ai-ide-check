@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [0.1.0] - 2026-06-02
+
 ### Added
 - Initial validation documentation for `Claude Code + Claude Code for VS Code + VS Code + Ollama`.
 - Contract, spec, and implementation plan for IDE agent-mode acceptance testing.
@@ -89,3 +91,5 @@
 - Reworked the Russian README into an article with a purpose statement,
   neutral headings, reproducible process illustrations, task examples, and a
   GPT-OSS reasoning example with the resulting tested code.
+- Prepared the first repository release with a version marker, release notes,
+  and a reproducible dated PDF export of the Russian overview report.
