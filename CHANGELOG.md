@@ -67,3 +67,8 @@
 - Added a Russian project README with a concise narrative report and generated
   PNG charts for GPU footprint, first-attempt stage completion, and successful
   file-work latency.
+- Continued the unconventional-model search after the Nemotron rejection and
+  selected `gpt-oss:20b-ctx32k` as the fifth working RX 6800 profile: it passed
+  handshake, structured tool use, and repository editing at `100% GPU`.
+- Refined the README charts to include working profiles only, added explanatory
+  labels, and added a selected-context-window chart.

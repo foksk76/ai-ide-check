@@ -138,6 +138,7 @@ Captured from local Ollama `/api/show`:
 | `granite4.1:8b-ctx32k` | `8.8B` | `Q4_K_M` | completion, tools | Local RX 6800 profile derived from `granite4.1:8b`; require exact-profile local evidence |
 | `ministral-3:8b-ctx32k` | `8.9B` | `Q4_K_M` | completion, vision, tools | Unconventional edge-oriented candidate; full agent pass observed on retry |
 | `nemotron-3-nano:4b-ctx32k` | `4.0B` | `Q4_K_M` | completion, tools, thinking | Lightweight unconventional candidate; reject for current Claude Code task flow |
+| `gpt-oss:20b-ctx32k` | `20.9B` | `MXFP4` | completion, tools, thinking | Unconventional mixture-of-experts candidate; full local gate passed |
 
 ## Current Evidence
 
@@ -307,13 +308,15 @@ default. VRAM fit and multi-step agent reliability are separate gates.
 
 ## Unconventional Candidate Probe
 
-Two rising Ollama models outside the existing Qwen, Gemma, and Granite track
-were tested with stand-specific `ctx32k` profiles.
+Rising Ollama models outside the existing Qwen, Gemma, and Granite track were
+tested with stand-specific `ctx32k` profiles. The second working newcomer was
+selected by continuing after the Nemotron rejection.
 
 | Model | Placement | Handshake | Tool | Agent | Decision |
 |---|---|---|---|---|---|
 | `ministral-3:8b-ctx32k` | `100% GPU`, `35/35` layers | Pass | Pass | Pass on retry | Add to exploratory coder fixtures; track repeatability |
 | `nemotron-3-nano:4b-ctx32k` | `100% GPU`, `43/43` layers | Fail | Fail | Fail | Reject for current Claude Code workflow |
+| `gpt-oss:20b-ctx32k` | `100% GPU`, `25/25` layers | Pass | Pass | Pass | Add as fifth working profile |
 
 Ministral completed file creation, Bash verification, and git-status
 grounding. Its first agent attempt skipped the required repository read; the
@@ -322,6 +325,11 @@ second attempt completed the full contract.
 Nemotron repeatedly answered as if no task had been supplied. Its small GPU
 footprint is useful evidence, but placement alone does not make a coding
 agent.
+
+GPT-OSS retained `100% GPU` placement with a `14 GB` runtime size and completed
+the full file-editing contract. Its `294.941` second agent pass is slower than
+the lighter qualified profiles, so the next stage must compare code quality,
+not latency alone.
 
 ## Local Coder Benchmark Ladder
 
@@ -414,6 +422,7 @@ For `win11-local-rx6800`:
 2. `gemma4:e4b-ctx128k` for bounded benchmarks; agent reliability unresolved
 3. `granite4.1:8b-ctx32k`
 4. `ministral-3:8b-ctx32k` as an exploratory candidate; track repeatability
+5. `gpt-oss:20b-ctx32k` as a heavier exploratory candidate
 
 Keep `llama3.2:latest` as a negative control only.
 

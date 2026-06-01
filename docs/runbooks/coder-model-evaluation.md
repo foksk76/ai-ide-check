@@ -140,6 +140,8 @@ ollama create ministral-3:8b-ctx32k `
   -f tools\modelfiles\ministral-3-8b-ctx32k.Modelfile
 ollama create nemotron-3-nano:4b-ctx32k `
   -f tools\modelfiles\nemotron-3-nano-4b-ctx32k.Modelfile
+ollama create gpt-oss:20b-ctx32k `
+  -f tools\modelfiles\gpt-oss-20b-ctx32k.Modelfile
 ```
 
 `ministral-3:8b-ctx32k` reached a full agent pass on retry at `100% GPU`.
@@ -147,6 +149,11 @@ Include it in exploratory coder fixtures and measure repeatability.
 
 `nemotron-3-nano:4b-ctx32k` stayed at `100% GPU` but failed the Claude Code
 task flow at every stage. Keep it as a negative control only.
+
+`gpt-oss:20b-ctx32k` stayed at `100% GPU` with `25/25` layers offloaded and a
+`14 GB` runtime size. It passed handshake, structured Bash execution,
+repository read, file creation, and git-status grounding on the first full
+run. Include it as the fifth working profile.
 
 ## Phase 2: Local Coder Fixture
 
