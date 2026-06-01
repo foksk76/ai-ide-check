@@ -143,3 +143,34 @@ That comparison will tell us whether the IDE client is:
 - `llama3.2:latest`: API returns real tool calls, but grounding quality is suspect
 - `qwen3:8b-q4_K_M`: good next candidate for direct IDE testing
 - `qwen2.5-coder:7b-instruct-q4_K_M`: remains negative control
+
+## Live IDE Capture: `run-002` on `llama3.2:latest`
+
+The live capture for `run-002` added one crucial finding:
+
+- the VS Code client first sends one or more `POST /v1/messages?beta=true` requests for session-title generation
+- those title-generation requests include `tools: []`
+- only after that does it send the larger task-bearing request with the actual session content and tool definitions
+
+The task-bearing request included:
+
+- the selected text from the run record
+- the full bounded task prompt
+- a large system envelope from the IDE/Claude harness
+- tool definitions
+
+Observed server behavior on the large task request:
+
+- HTTP `200 OK`
+- SSE streaming response
+- `input_tokens: 3031`
+- `output_tokens: 1`
+- `stop_reason: end_turn`
+
+Interpretation:
+
+- the client is not failing to send the prompt
+- the client is not failing to send tools
+- `llama3.2:latest` is still not turning that real IDE request envelope into a useful agent step
+
+This makes `run-003` on `qwen3:8b-q4_K_M` the highest-value next comparison.
