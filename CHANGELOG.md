@@ -61,3 +61,9 @@
 - Recorded that Gemma's current multi-step agent failure reproduces at both
   `ctx32k` and `ctx128k`, so its placement optimum is not an agent-qualified
   default.
+- Added two unconventional rising Ollama candidates: `ministral-3:8b-ctx32k`
+  reached a full agent pass on retry, while `nemotron-3-nano:4b-ctx32k`
+  failed to follow the Claude Code task flow despite its small GPU footprint.
+- Added a Russian project README with a concise narrative report and generated
+  PNG charts for GPU footprint, first-attempt stage completion, and successful
+  file-work latency.

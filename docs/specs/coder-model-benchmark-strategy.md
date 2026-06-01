@@ -136,6 +136,8 @@ Captured from local Ollama `/api/show`:
 | `gemma4:26b` | `25.8B` | `Q4_K_M` | completion, vision, tools, thinking | Secondary local coder candidate; require local evidence |
 | `gemma4:e4b` | `8.0B` | `Q4_K_M` | completion, vision, audio, tools, thinking | Existing secondary Claude Code candidate; require local coder-task evidence |
 | `granite4.1:8b-ctx32k` | `8.8B` | `Q4_K_M` | completion, tools | Local RX 6800 profile derived from `granite4.1:8b`; require exact-profile local evidence |
+| `ministral-3:8b-ctx32k` | `8.9B` | `Q4_K_M` | completion, vision, tools | Unconventional edge-oriented candidate; full agent pass observed on retry |
+| `nemotron-3-nano:4b-ctx32k` | `4.0B` | `Q4_K_M` | completion, tools, thinking | Lightweight unconventional candidate; reject for current Claude Code task flow |
 
 ## Current Evidence
 
@@ -303,6 +305,24 @@ through its advertised `131072` maximum.
 Treat Gemma's `131072` result as a placement optimum, not an agent-qualified
 default. VRAM fit and multi-step agent reliability are separate gates.
 
+## Unconventional Candidate Probe
+
+Two rising Ollama models outside the existing Qwen, Gemma, and Granite track
+were tested with stand-specific `ctx32k` profiles.
+
+| Model | Placement | Handshake | Tool | Agent | Decision |
+|---|---|---|---|---|---|
+| `ministral-3:8b-ctx32k` | `100% GPU`, `35/35` layers | Pass | Pass | Pass on retry | Add to exploratory coder fixtures; track repeatability |
+| `nemotron-3-nano:4b-ctx32k` | `100% GPU`, `43/43` layers | Fail | Fail | Fail | Reject for current Claude Code workflow |
+
+Ministral completed file creation, Bash verification, and git-status
+grounding. Its first agent attempt skipped the required repository read; the
+second attempt completed the full contract.
+
+Nemotron repeatedly answered as if no task had been supplied. Its small GPU
+footprint is useful evidence, but placement alone does not make a coding
+agent.
+
 ## Local Coder Benchmark Ladder
 
 Run the following levels in order. Stop scheduling expensive levels for models
@@ -393,6 +413,7 @@ For `win11-local-rx6800`:
 1. `qwen3:8b-q4_K_M-ctx40k`
 2. `gemma4:e4b-ctx128k` for bounded benchmarks; agent reliability unresolved
 3. `granite4.1:8b-ctx32k`
+4. `ministral-3:8b-ctx32k` as an exploratory candidate; track repeatability
 
 Keep `llama3.2:latest` as a negative control only.
 

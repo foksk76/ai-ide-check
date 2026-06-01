@@ -131,6 +131,23 @@ Gemma needs explicit reliability handling: current full-gate controls at both
 `32768` and `131072` passed handshake and Bash stages but stopped after the
 first `Read` tool in agent stage. This is not a context-size regression.
 
+### Unconventional Candidates
+
+Use the lightweight local profiles:
+
+```powershell
+ollama create ministral-3:8b-ctx32k `
+  -f tools\modelfiles\ministral-3-8b-ctx32k.Modelfile
+ollama create nemotron-3-nano:4b-ctx32k `
+  -f tools\modelfiles\nemotron-3-nano-4b-ctx32k.Modelfile
+```
+
+`ministral-3:8b-ctx32k` reached a full agent pass on retry at `100% GPU`.
+Include it in exploratory coder fixtures and measure repeatability.
+
+`nemotron-3-nano:4b-ctx32k` stayed at `100% GPU` but failed the Claude Code
+task flow at every stage. Keep it as a negative control only.
+
 ## Phase 2: Local Coder Fixture
 
 Create a deterministic fixture suite before ranking models:
