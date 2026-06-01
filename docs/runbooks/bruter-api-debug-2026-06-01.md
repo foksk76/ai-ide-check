@@ -174,3 +174,32 @@ Interpretation:
 - `llama3.2:latest` is still not turning that real IDE request envelope into a useful agent step
 
 This makes `run-003` on `qwen3:8b-q4_K_M` the highest-value next comparison.
+
+## Live IDE Outcome: `run-003` on `qwen3:8b-q4_K_M`
+
+The IDE result for `qwen3:8b-q4_K_M` did not complete the acceptance scenario either.
+
+Observed behavior from the IDE reply:
+
+- attempted `Write test.txt`
+- write failed
+- then produced generic `EACCES` troubleshooting advice about `/home/user`
+
+Additional capture detail:
+
+- as with `run-002`, the IDE first sent title-generation `POST /v1/messages?beta=true` requests with `tools: []`
+- the later task-bearing request included a tool error payload with `EACCES: permission denied, mkdir '/home/user'`
+- the capture also showed that one early `ide_selection` payload referenced lines from `run-001`, not the active `run-003` record
+
+What this means:
+
+- the model did transition into an action attempt
+- but it did not stay grounded in the requested target path `docs/runbooks/ide-agent-smoke-test.md`
+- after the failed write, it fell back to generic permission-help text unrelated to the actual repository layout
+- the IDE/session context itself may also be polluting the request with stale or irrelevant selection material
+
+Interpretation:
+
+- this is stronger evidence that the main failure is not transport
+- `qwen3:8b-q4_K_M` appears better than `llama3.2:latest` in API precheck, but under the real IDE envelope it still loses grounding
+- after two different failure shapes (`llama3.2`: near-empty end turn, `qwen3`: wrong-path write plus generic recovery), the dominant issue now looks like **model behavior under the IDE orchestration context**, not endpoint reachability

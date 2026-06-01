@@ -16,3 +16,4 @@
 - Added server-side `bruter` API debug findings with raw request/response evidence.
 - Added reusable live-capture helper and runbook for the next IDE debug run.
 - Recorded live-capture findings for `run-002` and prepared `run-003` for `qwen3:8b-q4_K_M`.
+- Recorded failed `run-003` IDE outcome for `qwen3:8b-q4_K_M`.
