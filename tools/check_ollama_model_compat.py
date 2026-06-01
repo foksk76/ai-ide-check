@@ -13,6 +13,7 @@ from typing import Any
 
 
 DEFAULT_BASE_URLS = [
+    "http://localhost:11434",
     "http://bruter",
     "http://bruter:11434",
 ]

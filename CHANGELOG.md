@@ -18,3 +18,17 @@
 - Recorded live-capture findings for `run-002` and prepared `run-003` for `qwen3:8b-q4_K_M`.
 - Recorded failed `run-003` IDE outcome for `qwen3:8b-q4_K_M`.
 - Added cross-stand handoff with current state and recommended continuation steps.
+- Added a verified Windows single-host stand snapshot with local Ollama endpoint,
+  tool versions, Claude configuration observations, and the installed model
+  inventory.
+- Added the Windows local headless Claude Code runner with disposable worktrees,
+  explicit localhost Ollama settings, three-stage validation, and raw artifact
+  capture.
+- Updated the Ollama compatibility checker to prefer the local Windows endpoint
+  before the legacy remote `bruter` endpoints.
+- Recorded the first Windows local headless baseline: `qwen3:8b-q4_K_M` passed
+  cleanly, `gemma4:e4b` passed the tool loop with a final-answer wording defect,
+  and `llama3.2:latest` reproduced its empty-turn failure without VS Code.
+- Added an Ollama Anthropic Messages surface probe with three-attempt model
+  checks, raw JSON evidence, a Markdown report, and a source-backed
+  compatibility analysis for Claude Code.

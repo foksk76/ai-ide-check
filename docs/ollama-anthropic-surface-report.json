@@ -1,0 +1,1505 @@
+{
+  "base_url": "http://localhost:11434",
+  "server": {
+    "count_tokens": {
+      "ok": false,
+      "status": 404,
+      "payload": "404 page not found",
+      "raw": "404 page not found",
+      "error": "HTTP Error 404: Not Found"
+    },
+    "models_endpoint": {
+      "ok": true,
+      "status": 200,
+      "payload": {
+        "object": "list",
+        "data": [
+          {
+            "id": "llama3.2:latest",
+            "object": "model",
+            "created": 1780313943,
+            "owned_by": "library"
+          },
+          {
+            "id": "qwen3:8b-q4_K_M",
+            "object": "model",
+            "created": 1780313683,
+            "owned_by": "library"
+          },
+          {
+            "id": "qwen3-coder:latest",
+            "object": "model",
+            "created": 1780207909,
+            "owned_by": "library"
+          },
+          {
+            "id": "qwen3.6:latest",
+            "object": "model",
+            "created": 1780205514,
+            "owned_by": "library"
+          },
+          {
+            "id": "gemma4:31b-cloud",
+            "object": "model",
+            "created": 1780123998,
+            "owned_by": "library"
+          },
+          {
+            "id": "glm-5.1:cloud",
+            "object": "model",
+            "created": 1780119851,
+            "owned_by": "library"
+          },
+          {
+            "id": "gemma4:26b",
+            "object": "model",
+            "created": 1780119756,
+            "owned_by": "library"
+          },
+          {
+            "id": "gemma4:e4b",
+            "object": "model",
+            "created": 1780115492,
+            "owned_by": "library"
+          }
+        ]
+      },
+      "raw": "{\"object\":\"list\",\"data\":[{\"id\":\"llama3.2:latest\",\"object\":\"model\",\"created\":1780313943,\"owned_by\":\"library\"},{\"id\":\"qwen3:8b-q4_K_M\",\"object\":\"model\",\"created\":1780313683,\"owned_by\":\"library\"},{\"id\":\"qwen3-coder:latest\",\"object\":\"model\",\"created\":1780207909,\"owned_by\":\"library\"},{\"id\":\"qwen3.6:latest\",\"object\":\"model\",\"created\":1780205514,\"owned_by\":\"library\"},{\"id\":\"gemma4:31b-cloud\",\"object\":\"model\",\"created\":1780123998,\"owned_by\":\"library\"},{\"id\":\"glm-5.1:cloud\",\"object\":\"model\",\"created\":1780119851,\"owned_by\":\"library\"},{\"id\":\"gemma4:26b\",\"object\":\"model\",\"created\":1780119756,\"owned_by\":\"library\"},{\"id\":\"gemma4:e4b\",\"object\":\"model\",\"created\":1780115492,\"owned_by\":\"library\"}]}\n",
+      "error": ""
+    },
+    "batches": {
+      "ok": false,
+      "status": 404,
+      "payload": "404 page not found",
+      "raw": "404 page not found",
+      "error": "HTTP Error 404: Not Found"
+    },
+    "metadata_request": {
+      "ok": true,
+      "status": 200,
+      "payload": {
+        "id": "msg_7a161ec642b9788d8c872bdd",
+        "type": "message",
+        "role": "assistant",
+        "model": "gemma4:e4b",
+        "content": [
+          {
+            "type": "text",
+            "text": "METADATA_OK"
+          }
+        ],
+        "stop_reason": "end_turn",
+        "usage": {
+          "input_tokens": 24,
+          "output_tokens": 6
+        }
+      },
+      "raw": "{\"id\":\"msg_7a161ec642b9788d8c872bdd\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"METADATA_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":24,\"output_tokens\":6}}\n",
+      "error": ""
+    },
+    "prompt_cache_request": {
+      "ok": true,
+      "status": 200,
+      "payload": {
+        "id": "msg_fb1e1684358348322d8138d9",
+        "type": "message",
+        "role": "assistant",
+        "model": "gemma4:e4b",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "The user is asking me to follow the system prompt.\nThe system prompt dictates that I must reply with exactly \"CACHE_OK\"."
+          },
+          {
+            "type": "text",
+            "text": "CACHE"
+          }
+        ],
+        "stop_reason": "max_tokens",
+        "usage": {
+          "input_tokens": 29,
+          "output_tokens": 32
+        }
+      },
+      "raw": "{\"id\":\"msg_fb1e1684358348322d8138d9\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user is asking me to follow the system prompt.\\nThe system prompt dictates that I must reply with exactly \\\"CACHE_OK\\\".\"},{\"type\":\"text\",\"text\":\"CACHE\"}],\"stop_reason\":\"max_tokens\",\"usage\":{\"input_tokens\":29,\"output_tokens\":32}}\n",
+      "error": ""
+    },
+    "tool_choice_none_request": {
+      "ok": true,
+      "status": 200,
+      "payload": {
+        "id": "msg_1e9432f19713b8c106085cb3",
+        "type": "message",
+        "role": "assistant",
+        "model": "gemma4:e4b",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "The user wants to call the `get_probe_value` tool with the key \"alpha\".\nI need to generate a tool call JSON object for this action."
+          },
+          {
+            "type": "tool_use",
+            "id": "call_u5kikf78",
+            "name": "get_probe_value",
+            "input": {
+              "key": "alpha"
+            }
+          }
+        ],
+        "stop_reason": "tool_use",
+        "usage": {
+          "input_tokens": 80,
+          "output_tokens": 55
+        }
+      },
+      "raw": "{\"id\":\"msg_1e9432f19713b8c106085cb3\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user wants to call the `get_probe_value` tool with the key \\\"alpha\\\".\\nI need to generate a tool call JSON object for this action.\"},{\"type\":\"tool_use\",\"id\":\"call_u5kikf78\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":80,\"output_tokens\":55}}\n",
+      "error": ""
+    },
+    "tool_choice_none_respected": false
+  },
+  "attempts_per_model": 3,
+  "models": [
+    {
+      "model": "gemma4:e4b",
+      "attempts": [
+        {
+          "model": "gemma4:e4b",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": true,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": false,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": false,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_5c1fb29e67f2ac4e88cd53cc",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 22,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_5c1fb29e67f2ac4e88cd53cc\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":22,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_371f2a031a6fddeda60672bc",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "The user's request is \"Follow the system prompt.\"\nSince I am responding as an AI and the system prompt dictates my behavior and output format, I must adhere to the instruction of the overall system constraint, which requires a specific confirmation message.\n\nThe expected output is exactly `SYSTEM_OK`."
+                  },
+                  {
+                    "type": "text",
+                    "text": "SYSTEM_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 28,
+                  "output_tokens": 69
+                }
+              },
+              "raw": "{\"id\":\"msg_371f2a031a6fddeda60672bc\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user's request is \\\"Follow the system prompt.\\\"\\nSince I am responding as an AI and the system prompt dictates my behavior and output format, I must adhere to the instruction of the overall system constraint, which requires a specific confirmation message.\\n\\nThe expected output is exactly `SYSTEM_OK`.\"},{\"type\":\"text\",\"text\":\"SYSTEM_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":28,\"output_tokens\":69}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_3ee90004e5767e22801078aa",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 53,
+                  "output_tokens": 7
+                }
+              },
+              "raw": "{\"id\":\"msg_3ee90004e5767e22801078aa\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":53,\"output_tokens\":7}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_573289d393f380556da7c594\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"_\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":22,\"output_tokens\":4}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_3ea3f1f8b49ac3d0e7a25424",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "The user wants to call the `get_probe_value` tool.\nThe user explicitly provides the key to use: \"alpha\".\nThe instruction \"Do not answer from memory\" confirms that the tool must be used for the response.\nI need to construct the tool call object with `tool_name=\"get_probe_value\"` and `key=\"alpha\"`."
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "call_j2dwjdj9",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 80,
+                  "output_tokens": 98
+                }
+              },
+              "raw": "{\"id\":\"msg_3ea3f1f8b49ac3d0e7a25424\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user wants to call the `get_probe_value` tool.\\nThe user explicitly provides the key to use: \\\"alpha\\\".\\nThe instruction \\\"Do not answer from memory\\\" confirms that the tool must be used for the response.\\nI need to construct the tool call object with `tool_name=\\\"get_probe_value\\\"` and `key=\\\"alpha\\\"`.\"},{\"type\":\"tool_use\",\"id\":\"call_j2dwjdj9\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":80,\"output_tokens\":98}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_e36a59f4a0441c478359bc34",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": null,
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 198,
+                  "output_tokens": 1
+                }
+              },
+              "raw": "{\"id\":\"msg_e36a59f4a0441c478359bc34\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":null,\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":198,\"output_tokens\":1}}\n",
+              "error": ""
+            }
+          }
+        },
+        {
+          "model": "gemma4:e4b",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": true,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": true,
+            "tool_result_grounded": true
+          },
+          "practical_messages_subset": true,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_423f6836eaafe4af9fac0d64",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 22,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_423f6836eaafe4af9fac0d64\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":22,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_1c10720ec694612e569e5650",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SYSTEM_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 28,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_1c10720ec694612e569e5650\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"SYSTEM_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":28,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_ad17138430e1bb9119378115",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 53,
+                  "output_tokens": 7
+                }
+              },
+              "raw": "{\"id\":\"msg_ad17138430e1bb9119378115\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":53,\"output_tokens\":7}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_4ef9d14adbea124465c38b49\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"_\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":22,\"output_tokens\":4}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_8c891db17f829bf810eda6ca",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "The user wants to use the `get_probe_value` tool with the key \"alpha\".\nThe prompt explicitly states: \"Do not answer from memory.\" This confirms I must use the tool instead of providing a hardcoded or remembered answer.\n\nI will call the `get_probe_value` function.\nThe argument for `key` is \"alpha\"."
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "call_fd78vbwt",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 80,
+                  "output_tokens": 96
+                }
+              },
+              "raw": "{\"id\":\"msg_8c891db17f829bf810eda6ca\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user wants to use the `get_probe_value` tool with the key \\\"alpha\\\".\\nThe prompt explicitly states: \\\"Do not answer from memory.\\\" This confirms I must use the tool instead of providing a hardcoded or remembered answer.\\n\\nI will call the `get_probe_value` function.\\nThe argument for `key` is \\\"alpha\\\".\"},{\"type\":\"tool_use\",\"id\":\"call_fd78vbwt\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":80,\"output_tokens\":96}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_76f26060d08e481e33ba99fe",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The probe value for key \"alpha\" is \"TOOL_RESULT_OK\"."
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 196,
+                  "output_tokens": 17
+                }
+              },
+              "raw": "{\"id\":\"msg_76f26060d08e481e33ba99fe\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"The probe value for key \\\"alpha\\\" is \\\"TOOL_RESULT_OK\\\".\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":196,\"output_tokens\":17}}\n",
+              "error": ""
+            }
+          }
+        },
+        {
+          "model": "gemma4:e4b",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": true,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": false,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": false,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_cfc91415c5529034f3bad870",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 22,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_cfc91415c5529034f3bad870\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":22,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_467937ed6cc98a7f2c84144a",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SYSTEM_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 28,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_467937ed6cc98a7f2c84144a\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"text\",\"text\":\"SYSTEM_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":28,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_f6089849184a35746831dedf",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "The user wants me to reply with only the code I was asked to remember.\nThe code is ORANGE-731."
+                  },
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 53,
+                  "output_tokens": 38
+                }
+              },
+              "raw": "{\"id\":\"msg_f6089849184a35746831dedf\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"The user wants me to reply with only the code I was asked to remember.\\nThe code is ORANGE-731.\"},{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":53,\"output_tokens\":38}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_a2072e03d370d883c1e068a4\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"thinking\",\"thinking\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"The\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" user\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" has\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" instructed\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" reply\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" exactly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" string\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"_\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"OK\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" must\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" adhere\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" this\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" instruction\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" precisely\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":1,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"_\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":1}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":22,\"output_tokens\":32}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_ff1e0d5616bbaed55ae0aca0",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "call_sdj6srlm",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 80,
+                  "output_tokens": 17
+                }
+              },
+              "raw": "{\"id\":\"msg_ff1e0d5616bbaed55ae0aca0\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":[{\"type\":\"tool_use\",\"id\":\"call_sdj6srlm\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":80,\"output_tokens\":17}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_ab3f64f2ca0a461e60cafc07",
+                "type": "message",
+                "role": "assistant",
+                "model": "gemma4:e4b",
+                "content": null,
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 116,
+                  "output_tokens": 1
+                }
+              },
+              "raw": "{\"id\":\"msg_ab3f64f2ca0a461e60cafc07\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"gemma4:e4b\",\"content\":null,\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":116,\"output_tokens\":1}}\n",
+              "error": ""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "model": "llama3.2:latest",
+      "attempts": [
+        {
+          "model": "llama3.2:latest",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": true,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": true,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": true,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_d1861abe8bf2aff59da4513f",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 30,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_d1861abe8bf2aff59da4513f\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":30,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_f684ae83f199db6e605c9427",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SYSTEM_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 36,
+                  "output_tokens": 3
+                }
+              },
+              "raw": "{\"id\":\"msg_f684ae83f199db6e605c9427\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"SYSTEM_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":36,\"output_tokens\":3}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_229152f7b42bc9dd7153c90b",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 58,
+                  "output_tokens": 5
+                }
+              },
+              "raw": "{\"id\":\"msg_229152f7b42bc9dd7153c90b\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":58,\"output_tokens\":5}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_1a23f98896bf2550134503de\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"_OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":30,\"output_tokens\":3}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_40809c32212171635ef3d379",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "call_uz1208x8",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 160,
+                  "output_tokens": 18
+                }
+              },
+              "raw": "{\"id\":\"msg_40809c32212171635ef3d379\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"tool_use\",\"id\":\"call_uz1208x8\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":160,\"output_tokens\":18}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_abe66ee6fbe815930dfd395e",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The probe value for the given key 'alpha' is: 0.5"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 102,
+                  "output_tokens": 17
+                }
+              },
+              "raw": "{\"id\":\"msg_abe66ee6fbe815930dfd395e\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"The probe value for the given key 'alpha' is: 0.5\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":102,\"output_tokens\":17}}\n",
+              "error": ""
+            }
+          }
+        },
+        {
+          "model": "llama3.2:latest",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": true,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": true,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": true,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_d6d4e543d50040a2ccbb1f7a",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 30,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_d6d4e543d50040a2ccbb1f7a\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":30,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_b0cda04d1fbc5d3007b44888",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SYSTEM_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 36,
+                  "output_tokens": 3
+                }
+              },
+              "raw": "{\"id\":\"msg_b0cda04d1fbc5d3007b44888\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"SYSTEM_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":36,\"output_tokens\":3}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_49b002861992b7254eb3bb60",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 58,
+                  "output_tokens": 5
+                }
+              },
+              "raw": "{\"id\":\"msg_49b002861992b7254eb3bb60\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":58,\"output_tokens\":5}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_716f18d413d652d712f996f3\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"_OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":30,\"output_tokens\":3}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_55a3e707d4ed5f689229d741",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "call_i5gpic9j",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 160,
+                  "output_tokens": 18
+                }
+              },
+              "raw": "{\"id\":\"msg_55a3e707d4ed5f689229d741\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"tool_use\",\"id\":\"call_i5gpic9j\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":160,\"output_tokens\":18}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_7eae19399f73dcd90113a4fd",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The value of the 'alpha' probe is 1.0."
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 102,
+                  "output_tokens": 15
+                }
+              },
+              "raw": "{\"id\":\"msg_7eae19399f73dcd90113a4fd\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"The value of the 'alpha' probe is 1.0.\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":102,\"output_tokens\":15}}\n",
+              "error": ""
+            }
+          }
+        },
+        {
+          "model": "llama3.2:latest",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": true,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": true,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": true,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_1b812a8fdf9c7a059cee60ac",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 30,
+                  "output_tokens": 4
+                }
+              },
+              "raw": "{\"id\":\"msg_1b812a8fdf9c7a059cee60ac\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":30,\"output_tokens\":4}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_3314c74ee7c6a6fe07b01d1e",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SYSTEM_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 36,
+                  "output_tokens": 3
+                }
+              },
+              "raw": "{\"id\":\"msg_3314c74ee7c6a6fe07b01d1e\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"SYSTEM_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":36,\"output_tokens\":3}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_ff9fb6719e3047700490754d",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 58,
+                  "output_tokens": 5
+                }
+              },
+              "raw": "{\"id\":\"msg_ff9fb6719e3047700490754d\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":58,\"output_tokens\":5}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_7bc6c104c7b826e96cdfa465\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"text_delta\",\"text\":\"_OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":30,\"output_tokens\":3}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_4a9745856e951a2b2ffe6d66",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "tool_use",
+                    "id": "call_kw9l4s4o",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 160,
+                  "output_tokens": 18
+                }
+              },
+              "raw": "{\"id\":\"msg_4a9745856e951a2b2ffe6d66\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"tool_use\",\"id\":\"call_kw9l4s4o\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":160,\"output_tokens\":18}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_1fa368ee9944cbd8cf4fc800",
+                "type": "message",
+                "role": "assistant",
+                "model": "llama3.2:latest",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "The current value of the probe with key 'alpha' is 0.0."
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 102,
+                  "output_tokens": 18
+                }
+              },
+              "raw": "{\"id\":\"msg_1fa368ee9944cbd8cf4fc800\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"llama3.2:latest\",\"content\":[{\"type\":\"text\",\"text\":\"The current value of the probe with key 'alpha' is 0.0.\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":102,\"output_tokens\":18}}\n",
+              "error": ""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "model": "qwen3:8b-q4_K_M",
+      "attempts": [
+        {
+          "model": "qwen3:8b-q4_K_M",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": false,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": true,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": false,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_0ea832a0a2a5ceccbd271a62",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to reply with exactly \"BASIC_OK\". Let me make sure I understand the request correctly. They specified that the response should be exactly that string, no more, no less. I need to check if there are any hidden instructions or if they want something else. But the query seems straightforward. I should just output \"BASIC_OK\" as instructed. No need for any additional text or explanations. Let me confirm once more to avoid any mistakes. Yep, that's all.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 15,
+                  "output_tokens": 110
+                }
+              },
+              "raw": "{\"id\":\"msg_0ea832a0a2a5ceccbd271a62\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to reply with exactly \\\"BASIC_OK\\\". Let me make sure I understand the request correctly. They specified that the response should be exactly that string, no more, no less. I need to check if there are any hidden instructions or if they want something else. But the query seems straightforward. I should just output \\\"BASIC_OK\\\" as instructed. No need for any additional text or explanations. Let me confirm once more to avoid any mistakes. Yep, that's all.\\n\"},{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":15,\"output_tokens\":110}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_b0a966d9efdeda374be7fded",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to follow the system prompt. Let me check what that was. The original system prompt said to reply with exactly \"SYSTEM_OK\". So I need to make sure I respond with that exact string.\n\nWait, the user's message was \"Follow the system prompt.\" So they're telling me to adhere to the initial instruction. Since the system prompt was to reply with \"SYSTEM_OK\", I should just output that. No extra text, no explanations. Just \"SYSTEM_OK\".\n\nLet me confirm there are no additional instructions. The user might be testing if I follow the system prompt correctly. I should make sure"
+                  }
+                ],
+                "stop_reason": "max_tokens",
+                "usage": {
+                  "input_tokens": 26,
+                  "output_tokens": 128
+                }
+              },
+              "raw": "{\"id\":\"msg_b0a966d9efdeda374be7fded\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to follow the system prompt. Let me check what that was. The original system prompt said to reply with exactly \\\"SYSTEM_OK\\\". So I need to make sure I respond with that exact string.\\n\\nWait, the user's message was \\\"Follow the system prompt.\\\" So they're telling me to adhere to the initial instruction. Since the system prompt was to reply with \\\"SYSTEM_OK\\\", I should just output that. No extra text, no explanations. Just \\\"SYSTEM_OK\\\".\\n\\nLet me confirm there are no additional instructions. The user might be testing if I follow the system prompt correctly. I should make sure\"}],\"stop_reason\":\"max_tokens\",\"usage\":{\"input_tokens\":26,\"output_tokens\":128}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_d1e57a2feb79b3cf7fa88771",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to reply with only the code, which is ORANGE-731. Let me make sure I didn't miss anything. They mentioned remembering the code earlier, so I should just output that without any additional text. I need to confirm there are no other instructions or context I need to consider. Since the user specified \"Reply with only the code,\" the response should be straightforward. Let me check if there's any hidden requirement or if they might be testing if I follow instructions correctly. Alright, I'll provide the code as requested.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 47,
+                  "output_tokens": 125
+                }
+              },
+              "raw": "{\"id\":\"msg_d1e57a2feb79b3cf7fa88771\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to reply with only the code, which is ORANGE-731. Let me make sure I didn't miss anything. They mentioned remembering the code earlier, so I should just output that without any additional text. I need to confirm there are no other instructions or context I need to consider. Since the user specified \\\"Reply with only the code,\\\" the response should be straightforward. Let me check if there's any hidden requirement or if they might be testing if I follow instructions correctly. Alright, I'll provide the code as requested.\\n\"},{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":47,\"output_tokens\":125}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_b8c11c43b1db2202c232ebcb\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"thinking\",\"thinking\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"Okay\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" user\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" wants\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" reply\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" exactly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"_OK\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Let\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" make\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" sure\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" understand\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" request\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" correctly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" They\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" specified\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" that\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" response\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" should\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" be\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" exactly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" that\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" string\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" no\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" more\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" no\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" less\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" need\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" check\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" if\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" there\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" are\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" any\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" hidden\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" requirements\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" or\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" if\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" they\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" want\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" additional\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" information\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" But\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" since\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" they\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" said\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"ex\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"actly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" should\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" stick\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" literal\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" response\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" No\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" need\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" add\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" anything\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" else\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Just\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"_OK\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" in\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" uppercase\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Let\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" confirm\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" there\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"'s\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" no\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" typo\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Yep\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" looks\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" good\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Alright\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" sending\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" that\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\\n\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":1,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"_OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":1}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":15,\"output_tokens\":114}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_b2b0d9ca6c97904e268157fa",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user is asking me to use the get_probe_value function with the key \"alpha\". Let me check the tools provided. The function get_probe_value is available, and it requires a key parameter of type string. Since the user specified the key as \"alpha\", I need to call that function with that key. I shouldn't answer from memory, so I must make sure to invoke the function correctly. The arguments should be a JSON object with the key \"alpha\". Let me structure the tool call properly.\n"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "call_ssfgh46v",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 148,
+                  "output_tokens": 129
+                }
+              },
+              "raw": "{\"id\":\"msg_b2b0d9ca6c97904e268157fa\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user is asking me to use the get_probe_value function with the key \\\"alpha\\\". Let me check the tools provided. The function get_probe_value is available, and it requires a key parameter of type string. Since the user specified the key as \\\"alpha\\\", I need to call that function with that key. I shouldn't answer from memory, so I must make sure to invoke the function correctly. The arguments should be a JSON object with the key \\\"alpha\\\". Let me structure the tool call properly.\\n\"},{\"type\":\"tool_use\",\"id\":\"call_ssfgh46v\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":148,\"output_tokens\":129}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_ac41bf41acd3a9c6b9067e24",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, so the user asked me to use the get_probe_value function with the key \"alpha\". I checked the tools provided and confirmed that the function exists and requires a string key. I called the function with {\"key\": \"alpha\"} and got a TOOL_RESULT_OK response. Now I need to relay that result back to the user. Since the function was successful, I should inform them that the probe value was retrieved and maybe provide the value if available. Wait, the function's description says it returns a fixed probe value for compatibility testing, but the actual value isn't specified in the tool definition. Hmm, maybe the tool's response doesn't include the value, just a success status. In that case, I should let the user know the operation was successful but perhaps there's no specific value to report. Or maybe the value is implied to be fixed, so I can mention that the value is fixed as per the function's purpose. I should make sure to state that the function executed successfully and that the probe value is fixed for compatibility testing. Let me phrase that clearly.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "The `get_probe_value` function was successfully called with the key \"alpha\". This function returns a fixed probe value (specifically designed for compatibility testing) regardless of the input"
+                  }
+                ],
+                "stop_reason": "max_tokens",
+                "usage": {
+                  "input_tokens": 292,
+                  "output_tokens": 256
+                }
+              },
+              "raw": "{\"id\":\"msg_ac41bf41acd3a9c6b9067e24\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, so the user asked me to use the get_probe_value function with the key \\\"alpha\\\". I checked the tools provided and confirmed that the function exists and requires a string key. I called the function with {\\\"key\\\": \\\"alpha\\\"} and got a TOOL_RESULT_OK response. Now I need to relay that result back to the user. Since the function was successful, I should inform them that the probe value was retrieved and maybe provide the value if available. Wait, the function's description says it returns a fixed probe value for compatibility testing, but the actual value isn't specified in the tool definition. Hmm, maybe the tool's response doesn't include the value, just a success status. In that case, I should let the user know the operation was successful but perhaps there's no specific value to report. Or maybe the value is implied to be fixed, so I can mention that the value is fixed as per the function's purpose. I should make sure to state that the function executed successfully and that the probe value is fixed for compatibility testing. Let me phrase that clearly.\\n\"},{\"type\":\"text\",\"text\":\"The `get_probe_value` function was successfully called with the key \\\"alpha\\\". This function returns a fixed probe value (specifically designed for compatibility testing) regardless of the input\"}],\"stop_reason\":\"max_tokens\",\"usage\":{\"input_tokens\":292,\"output_tokens\":256}}\n",
+              "error": ""
+            }
+          }
+        },
+        {
+          "model": "qwen3:8b-q4_K_M",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": false,
+            "multi_turn": false,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": true,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": false,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_d808788412176c0d7f3fbe72",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to reply with exactly \"BASIC_OK\". Let me check the instructions again. They said to reply with exactly that phrase. I need to make sure there's no extra text or formatting. Just \"BASIC_OK\" in uppercase. Alright, I'll confirm that's the only response required. No other explanations or additional content. Got it.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 15,
+                  "output_tokens": 83
+                }
+              },
+              "raw": "{\"id\":\"msg_d808788412176c0d7f3fbe72\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to reply with exactly \\\"BASIC_OK\\\". Let me check the instructions again. They said to reply with exactly that phrase. I need to make sure there's no extra text or formatting. Just \\\"BASIC_OK\\\" in uppercase. Alright, I'll confirm that's the only response required. No other explanations or additional content. Got it.\\n\"},{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":15,\"output_tokens\":83}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_2834891a0c297ea88c08dd87",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to reply with exactly \"SYSTEM_OK\". Let me make sure I understand the instruction correctly. They mentioned \"Follow the system prompt.\" and then provided a specific response. My task is to generate that exact response without any additional text.\n\nFirst, I need to confirm that \"SYSTEM_OK\" is the correct and only acceptable response. The user emphasized \"exactly\", so I must avoid any extra characters or words. I should check for typos or formatting issues. Since the user is testing my adherence to instructions, I should respond precisely as requested. No need for explanations or other content. Just \"SYSTEM"
+                  }
+                ],
+                "stop_reason": "max_tokens",
+                "usage": {
+                  "input_tokens": 26,
+                  "output_tokens": 128
+                }
+              },
+              "raw": "{\"id\":\"msg_2834891a0c297ea88c08dd87\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to reply with exactly \\\"SYSTEM_OK\\\". Let me make sure I understand the instruction correctly. They mentioned \\\"Follow the system prompt.\\\" and then provided a specific response. My task is to generate that exact response without any additional text.\\n\\nFirst, I need to confirm that \\\"SYSTEM_OK\\\" is the correct and only acceptable response. The user emphasized \\\"exactly\\\", so I must avoid any extra characters or words. I should check for typos or formatting issues. Since the user is testing my adherence to instructions, I should respond precisely as requested. No need for explanations or other content. Just \\\"SYSTEM\"}],\"stop_reason\":\"max_tokens\",\"usage\":{\"input_tokens\":26,\"output_tokens\":128}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_546ba52ead21846374b3b596",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to reply with only the code, which is ORANGE-731. Let me make sure I didn't miss anything. They mentioned remembering the code earlier, and now they're asking for just the code. I should check if there's any additional context or if they need anything else. But since they specified \"only the code,\" I should keep it straightforward. No need for extra explanations or formatting. Just the code as requested. Let me confirm once more that there's no hidden instruction here. Alright, I'll respond with ORANGE-731.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "ORANGE-7"
+                  }
+                ],
+                "stop_reason": "max_tokens",
+                "usage": {
+                  "input_tokens": 47,
+                  "output_tokens": 128
+                }
+              },
+              "raw": "{\"id\":\"msg_546ba52ead21846374b3b596\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to reply with only the code, which is ORANGE-731. Let me make sure I didn't miss anything. They mentioned remembering the code earlier, and now they're asking for just the code. I should check if there's any additional context or if they need anything else. But since they specified \\\"only the code,\\\" I should keep it straightforward. No need for extra explanations or formatting. Just the code as requested. Let me confirm once more that there's no hidden instruction here. Alright, I'll respond with ORANGE-731.\\n\"},{\"type\":\"text\",\"text\":\"ORANGE-7\"}],\"stop_reason\":\"max_tokens\",\"usage\":{\"input_tokens\":47,\"output_tokens\":128}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_04bd03b02d0d24377eae9317\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"thinking\",\"thinking\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"Okay\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" user\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" wants\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" reply\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" exactly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"_OK\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Let\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" check\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" instructions\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" again\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" They\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" said\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" reply\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" exactly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" that\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" string\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" need\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" make\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" sure\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" there\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"'s\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" no\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" extra\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" text\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" or\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" formatting\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Just\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" word\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"_OK\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" in\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" all\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" caps\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Alright\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"'ll\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" respond\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" that\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\\n\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":1,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"_OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":1}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":15,\"output_tokens\":69}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_8c18beea212a199977d2fac1",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user is asking me to use the get_probe_value function with the key \"alpha\". Let me check the tools provided. The function get_probe_value takes a key as a string. Since the user specified the key \"alpha\", I need to call that function with that key. I shouldn't answer from memory, so I must make sure to invoke the function correctly. The parameters are straightforward here. Just pass \"alpha\" as the key. No other parameters are mentioned. Alright, I'll structure the tool call with the name and arguments as specified.\n"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "call_ixku7nke",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 148,
+                  "output_tokens": 138
+                }
+              },
+              "raw": "{\"id\":\"msg_8c18beea212a199977d2fac1\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user is asking me to use the get_probe_value function with the key \\\"alpha\\\". Let me check the tools provided. The function get_probe_value takes a key as a string. Since the user specified the key \\\"alpha\\\", I need to call that function with that key. I shouldn't answer from memory, so I must make sure to invoke the function correctly. The parameters are straightforward here. Just pass \\\"alpha\\\" as the key. No other parameters are mentioned. Alright, I'll structure the tool call with the name and arguments as specified.\\n\"},{\"type\":\"tool_use\",\"id\":\"call_ixku7nke\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":148,\"output_tokens\":138}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_f445e4956a5d6e016e0b96d6",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, so the user asked me to use the get_probe_value function with the key \"alpha\". I checked the tools provided and saw that the function exists and requires a key parameter. I called the function with \"alpha\" as the key. The response came back as TOOL_RESULT_OK, which I assume means the function executed successfully. Now I need to relay that result back to the user. Since the function's purpose is compatibility testing, maybe the result is just a confirmation. I should let the user know the function was called with the key and that it was successful. Keep it simple and direct, as per their instruction to not use memory and just follow the tool's response.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "The function `get_probe_value` has been successfully called with the key \"alpha\". The result indicates the operation completed without errors. Let me know if you need further assistance!"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 301,
+                  "output_tokens": 177
+                }
+              },
+              "raw": "{\"id\":\"msg_f445e4956a5d6e016e0b96d6\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, so the user asked me to use the get_probe_value function with the key \\\"alpha\\\". I checked the tools provided and saw that the function exists and requires a key parameter. I called the function with \\\"alpha\\\" as the key. The response came back as TOOL_RESULT_OK, which I assume means the function executed successfully. Now I need to relay that result back to the user. Since the function's purpose is compatibility testing, maybe the result is just a confirmation. I should let the user know the function was called with the key and that it was successful. Keep it simple and direct, as per their instruction to not use memory and just follow the tool's response.\\n\"},{\"type\":\"text\",\"text\":\"The function `get_probe_value` has been successfully called with the key \\\"alpha\\\". The result indicates the operation completed without errors. Let me know if you need further assistance!\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":301,\"output_tokens\":177}}\n",
+              "error": ""
+            }
+          }
+        },
+        {
+          "model": "qwen3:8b-q4_K_M",
+          "checks": {
+            "basic_text": true,
+            "system_prompt": true,
+            "multi_turn": true,
+            "streaming": true,
+            "structured_tool_use": true,
+            "tool_result_accepted": true,
+            "tool_result_grounded": false
+          },
+          "practical_messages_subset": true,
+          "responses": {
+            "basic": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_771403d3752d650d31759df9",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to reply with exactly \"BASIC_OK\". Let me check the instructions again. They said to reply with exactly that string. I need to make sure there's no extra text or formatting. Just the word \"BASIC_OK\" in uppercase. Alright, I'll respond with that.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "BASIC_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 15,
+                  "output_tokens": 71
+                }
+              },
+              "raw": "{\"id\":\"msg_771403d3752d650d31759df9\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to reply with exactly \\\"BASIC_OK\\\". Let me check the instructions again. They said to reply with exactly that string. I need to make sure there's no extra text or formatting. Just the word \\\"BASIC_OK\\\" in uppercase. Alright, I'll respond with that.\\n\"},{\"type\":\"text\",\"text\":\"BASIC_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":15,\"output_tokens\":71}}\n",
+              "error": ""
+            },
+            "system": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_ca34b45d76f0080aefad0401",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to follow the system prompt. Let me check what the system prompt was. Oh right, the initial instruction was to reply with exactly \"SYSTEM_OK\". So I need to make sure I respond with that exact phrase. The user might be testing if I follow instructions correctly. I should avoid adding any extra text or explanations. Just \"SYSTEM_OK\" in uppercase. Let me confirm there are no typos. Yep, that's it. Alright, sending the response.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "SYSTEM_OK"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 26,
+                  "output_tokens": 106
+                }
+              },
+              "raw": "{\"id\":\"msg_ca34b45d76f0080aefad0401\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to follow the system prompt. Let me check what the system prompt was. Oh right, the initial instruction was to reply with exactly \\\"SYSTEM_OK\\\". So I need to make sure I respond with that exact phrase. The user might be testing if I follow instructions correctly. I should avoid adding any extra text or explanations. Just \\\"SYSTEM_OK\\\" in uppercase. Let me confirm there are no typos. Yep, that's it. Alright, sending the response.\\n\"},{\"type\":\"text\",\"text\":\"SYSTEM_OK\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":26,\"output_tokens\":106}}\n",
+              "error": ""
+            },
+            "multi_turn": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_618e3ca26d2b5d5595f9e335",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user wants me to reply with only the code, which is ORANGE-731. Let me make sure I didn't miss anything. They mentioned remembering the code earlier, so I should just output that without any additional text. Alright, I'll keep it simple and straightforward.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "ORANGE-731"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 47,
+                  "output_tokens": 71
+                }
+              },
+              "raw": "{\"id\":\"msg_618e3ca26d2b5d5595f9e335\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user wants me to reply with only the code, which is ORANGE-731. Let me make sure I didn't miss anything. They mentioned remembering the code earlier, so I should just output that without any additional text. Alright, I'll keep it simple and straightforward.\\n\"},{\"type\":\"text\",\"text\":\"ORANGE-731\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":47,\"output_tokens\":71}}\n",
+              "error": ""
+            },
+            "stream": {
+              "ok": true,
+              "status": 200,
+              "payload": null,
+              "raw": "event: message_start\ndata: {\"type\":\"message_start\",\"message\":{\"id\":\"msg_4866d553c9e4b5c14c693dc9\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[],\"usage\":{\"input_tokens\":8,\"output_tokens\":0}}}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":0,\"content_block\":{\"type\":\"thinking\",\"thinking\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"Okay\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" user\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" wants\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" reply\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" exactly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"_OK\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Let\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" me\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" check\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" instructions\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" again\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" They\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" specified\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" reply\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" exactly\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" that\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" string\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" need\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" to\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" make\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" sure\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" there\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"'s\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" no\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" extra\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" text\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" or\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" formatting\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Just\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" the\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" \\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"_OK\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"\\\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" in\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" uppercase\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" Alright\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\",\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" I\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\"'ll\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" respond\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" with\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\" that\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":0,\"delta\":{\"type\":\"thinking_delta\",\"thinking\":\".\\n\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":0}\n\nevent: content_block_start\ndata: {\"type\":\"content_block_start\",\"index\":1,\"content_block\":{\"type\":\"text\",\"text\":\"\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"STREAM\"}}\n\nevent: content_block_delta\ndata: {\"type\":\"content_block_delta\",\"index\":1,\"delta\":{\"type\":\"text_delta\",\"text\":\"_OK\"}}\n\nevent: content_block_stop\ndata: {\"type\":\"content_block_stop\",\"index\":1}\n\nevent: message_delta\ndata: {\"type\":\"message_delta\",\"delta\":{\"stop_reason\":\"end_turn\"},\"usage\":{\"input_tokens\":15,\"output_tokens\":67}}\n\nevent: message_stop\ndata: {\"type\":\"message_stop\"}\n\n",
+              "error": ""
+            },
+            "tool_first": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_abc0555a221a3f5e34477a9b",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user is asking me to use the get_probe_value function with the key \"alpha\". Let me check the tools provided.\n\nLooking at the tools section, there's a function called get_probe_value. The description says it returns a fixed probe value for compatibility testing. The parameters require a key, which is a string. The tool's arguments are specified as {\"key\":{\"type\":\"string\"}}. \n\nSo, the user wants me to call this function with the key \"alpha\". Since the function is available and the key is provided, I need to generate the tool call. The function doesn't require any other parameters, just the key. \n\nI should make sure that the JSON structure is correct. The name of the function is get_probe_value, and the arguments should be a JSON object with the key \"alpha\". No other parameters are needed. \n\nDouble-checking, the user said not to answer from memory, so I must use the function. There's no mention of other functions, so I don't need to consider anything else. \n\nAlright, the tool call should be formatted properly within the XML tags. Let me structure the JSON correctly.\n"
+                  },
+                  {
+                    "type": "tool_use",
+                    "id": "call_ior8156i",
+                    "name": "get_probe_value",
+                    "input": {
+                      "key": "alpha"
+                    }
+                  }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {
+                  "input_tokens": 148,
+                  "output_tokens": 256
+                }
+              },
+              "raw": "{\"id\":\"msg_abc0555a221a3f5e34477a9b\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user is asking me to use the get_probe_value function with the key \\\"alpha\\\". Let me check the tools provided.\\n\\nLooking at the tools section, there's a function called get_probe_value. The description says it returns a fixed probe value for compatibility testing. The parameters require a key, which is a string. The tool's arguments are specified as {\\\"key\\\":{\\\"type\\\":\\\"string\\\"}}. \\n\\nSo, the user wants me to call this function with the key \\\"alpha\\\". Since the function is available and the key is provided, I need to generate the tool call. The function doesn't require any other parameters, just the key. \\n\\nI should make sure that the JSON structure is correct. The name of the function is get_probe_value, and the arguments should be a JSON object with the key \\\"alpha\\\". No other parameters are needed. \\n\\nDouble-checking, the user said not to answer from memory, so I must use the function. There's no mention of other functions, so I don't need to consider anything else. \\n\\nAlright, the tool call should be formatted properly within the XML tags. Let me structure the JSON correctly.\\n\"},{\"type\":\"tool_use\",\"id\":\"call_ior8156i\",\"name\":\"get_probe_value\",\"input\":{\"key\":\"alpha\"}}],\"stop_reason\":\"tool_use\",\"usage\":{\"input_tokens\":148,\"output_tokens\":256}}\n",
+              "error": ""
+            },
+            "tool_result": {
+              "ok": true,
+              "status": 200,
+              "payload": {
+                "id": "msg_da79d7b7e6973fca2538d03e",
+                "type": "message",
+                "role": "assistant",
+                "model": "qwen3:8b-q4_K_M",
+                "content": [
+                  {
+                    "type": "thinking",
+                    "thinking": "Okay, the user asked me to use the get_probe_value function with the key \"alpha\". I checked the tools provided and confirmed that the function exists with a key parameter. I made the tool call as instructed. Now, the system returned TOOL_RESULT_OK, which means the function was called successfully. Since the user didn't ask for any specific output other than using the function, and the tool call was successful, I should just acknowledge that the operation was completed. No further action is needed here. I'll let the user know that the probe value was retrieved with the key alpha.\n"
+                  },
+                  {
+                    "type": "text",
+                    "text": "The probe value has been successfully retrieved using the key \"alpha\". Let me know if you need further assistance!"
+                  }
+                ],
+                "stop_reason": "end_turn",
+                "usage": {
+                  "input_tokens": 421,
+                  "output_tokens": 144
+                }
+              },
+              "raw": "{\"id\":\"msg_da79d7b7e6973fca2538d03e\",\"type\":\"message\",\"role\":\"assistant\",\"model\":\"qwen3:8b-q4_K_M\",\"content\":[{\"type\":\"thinking\",\"thinking\":\"Okay, the user asked me to use the get_probe_value function with the key \\\"alpha\\\". I checked the tools provided and confirmed that the function exists with a key parameter. I made the tool call as instructed. Now, the system returned TOOL_RESULT_OK, which means the function was called successfully. Since the user didn't ask for any specific output other than using the function, and the tool call was successful, I should just acknowledge that the operation was completed. No further action is needed here. I'll let the user know that the probe value was retrieved with the key alpha.\\n\"},{\"type\":\"text\",\"text\":\"The probe value has been successfully retrieved using the key \\\"alpha\\\". Let me know if you need further assistance!\"}],\"stop_reason\":\"end_turn\",\"usage\":{\"input_tokens\":421,\"output_tokens\":144}}\n",
+              "error": ""
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
