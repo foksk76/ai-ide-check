@@ -10,8 +10,28 @@ automated Claude Code runs through local Ollama.
 - Captured at: `2026-06-01T18:46:53.8930785+07:00`
 - Repository commit: `b4ed5d04945be8f17493792729c3c4bc4387684e`
 - Workspace: `C:\Git\ai-ide-check`
+- Stand ID: `win11-local-rx6800`
+- Hostname: `DESKTOP-5909GN1`
 - Host topology: VS Code, Claude Code, Claude Code for VS Code, Ollama, and
   candidate models run on the same Windows host.
+
+## Verified Hardware
+
+| Component | Verified value | Notes |
+|---|---|---|
+| Mainboard | `Gigabyte Technology Co., Ltd. X670 AORUS ELITE AX` | Local CIM |
+| CPU | `AMD Ryzen 7 7700X 8-Core Processor`, `8` cores, `16` logical processors | Local CIM |
+| RAM | approximately `32 GB` | Local CIM |
+| Discrete GPU | `AMD Radeon RX 6800`, PCI device `VEN_1002&DEV_73BF` | Local CIM |
+| Discrete GPU VRAM | `16 GB GDDR6` | [Official AMD specification](https://www.amd.com/en/products/graphics/desktops/radeon/6000-series/amd-radeon-rx-6800.html) |
+| Integrated GPU | `AMD Radeon(TM) Graphics` | Local CIM |
+| AMD driver | `32.0.12033.1030`, dated `2024-11-27` | Local CIM |
+| ROCm directories | `C:\Program Files\AMD\ROCm\6.2`, `C:\Program Files\AMD\ROCm\6.4` | Local filesystem |
+| External ROCm selected by shell | `C:\Program Files\AMD\ROCm\6.4\` | `HIP_PATH` |
+| Ollama bundled ROCm backend | `C:\Users\user\AppData\Local\Programs\Ollama\lib\ollama\rocm\ggml-hip.dll` | Observed in `server.log` |
+
+`Win32_VideoController.AdapterRAM` reported approximately `4 GB` for the RX
+6800. This is not treated as authoritative: AMD specifies `16 GB GDDR6`.
 
 ## Verified Component Versions
 
@@ -27,12 +47,48 @@ automated Claude Code runs through local Ollama.
 | Git | `2.54.0.windows.1` | Executable: `C:\Program Files\Git\cmd\git.exe`. |
 | curl | `8.19.0` | Windows build using Schannel. |
 
+## Verified Component Locations
+
+| Component | Location |
+|---|---|
+| VS Code CLI | `C:\Program Files\Microsoft VS Code\bin\code.cmd` |
+| Claude Code CLI | `C:\Users\user\.local\bin\claude.exe` |
+| Claude Code for VS Code | `C:\Users\user\.vscode\extensions\anthropic.claude-code-2.1.159-win32-x64` |
+| Ollama executable | `C:\Users\user\AppData\Local\Programs\Ollama\ollama.exe` |
+| Ollama logs | `C:\Users\user\AppData\Local\Ollama` |
+| Ollama models | `C:\Users\user\.ollama\models` |
+| Python | `C:\Users\user\AppData\Local\Microsoft\WindowsApps\python.exe` |
+| Git | `C:\Program Files\Git\cmd\git.exe` |
+
+`OLLAMA_MODELS` was unset at process, user, and machine scope, so the default
+Windows model location is active.
+
 ## Verified Local Endpoint
 
 - Ollama endpoint: `http://localhost:11434`
 - `GET /api/version`: success, returned `0.24.0`
 - `GET /api/tags`: success, returned the model inventory below
 - `ollama ps`: no model was loaded at snapshot time
+- GPU-selection override: `ROCR_VISIBLE_DEVICES` was not set
+
+## Observed GPU Execution
+
+The Ollama server log confirmed that the application used its bundled ROCm
+backend and detected:
+
+```text
+Device 0: AMD Radeon RX 6800, gfx1030
+library=ROCm total="16.0 GiB"
+```
+
+During a `qwen3:8b-q4_K_M` run, Ollama reported:
+
+```text
+offloaded 37/37 layers to GPU
+```
+
+Record processor placement per model: larger models may use a split GPU and CPU
+execution path even when the RX 6800 is detected correctly.
 
 ## Ollama Model Inventory
 

@@ -50,6 +50,27 @@ worktree. The main checkout is not used as the agent workspace.
 powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1
 ```
 
+The default stand ID is:
+
+```text
+win11-local-rx6800
+```
+
+Override it when reusing the runner on another registered stand:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1 `
+  -StandId another-stand-id `
+  -Endpoint http://another-host:11434
+```
+
+For coder-only runs on `win11-local-rx6800`, reject CPU or RAM spill:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1 `
+  -RequireFullGpu
+```
+
 Run a single diagnostic model:
 
 ```powershell
@@ -87,6 +108,8 @@ The directory includes:
 
 - `manifest.json`
 - Ollama version, model inventory, and before/after `ollama ps` snapshots
+- local Ollama `server.log` tail after the run when available
+- per-stage `ollama ps` snapshots and full-GPU placement verdicts
 - prompt text for every model and stage
 - Claude Code `stream-json` output
 - stderr and Claude Code debug logs
@@ -127,3 +150,9 @@ See [Ollama Anthropic API Compatibility For Claude Code](../specs/ollama-anthrop
 After the headless matrix identifies a viable model, run the same bounded agent
 task through Claude Code for VS Code. Record that separately: a VS Code failure
 must not overwrite a successful CLI result.
+
+## Coder-Only Next Stage
+
+For coding-model selection, continue with:
+
+- [Coder Model Evaluation Runbook](coder-model-evaluation.md)

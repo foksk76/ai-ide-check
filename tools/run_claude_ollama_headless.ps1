@@ -6,9 +6,11 @@ param(
         "qwen3:8b-q4_K_M"
     ),
     [string[]]$Stages = @("handshake", "tool", "agent"),
+    [string]$StandId = "win11-local-rx6800",
     [string]$Endpoint = "http://localhost:11434",
     [int]$TimeoutSeconds = 600,
     [string]$ArtifactsRoot = ".artifacts\claude-ollama-headless",
+    [switch]$RequireFullGpu,
     [switch]$KeepWorktrees
 )
 
@@ -143,6 +145,7 @@ function Invoke-ClaudeStage {
     $gitStatusPath = Join-Path $StageDirectory "git-status.txt"
     $gitDiffPath = Join-Path $StageDirectory "git-diff.patch"
     $targetArtifactPath = Join-Path $StageDirectory "target-file.md"
+    $ollamaPsPath = Join-Path $StageDirectory "ollama-ps.txt"
     (& git -C $Worktree status --short | Out-String) |
         Set-Content -LiteralPath $gitStatusPath -Encoding UTF8
     (& git -C $Worktree diff --binary | Out-String) |
@@ -150,6 +153,8 @@ function Invoke-ClaudeStage {
     if (Test-Path -LiteralPath $targetPath) {
         Copy-Item -LiteralPath $targetPath -Destination $targetArtifactPath
     }
+    (& ollama ps | Out-String) |
+        Set-Content -LiteralPath $ollamaPsPath -Encoding UTF8
 
     $exitCode = if ($timedOut -or -not (Test-Path -LiteralPath $exitCodePath)) {
         $null
@@ -164,6 +169,11 @@ function Invoke-ClaudeStage {
     }
     $markerObserved = $transcript.Contains($expectedMarker)
     $passed = (-not $timedOut) -and ($exitCode -eq 0) -and $markerObserved
+    $ollamaPs = Get-Content -LiteralPath $ollamaPsPath -Raw
+    $fullGpuObserved = $ollamaPs.Contains($Model) -and $ollamaPs.Contains("100% GPU")
+    if ($RequireFullGpu) {
+        $passed = $passed -and $fullGpuObserved
+    }
     if ($Stage -eq "agent") {
         $readObserved = $transcript.Contains('"name":"Read"') -and $transcript.Contains("CHANGELOG.md")
         $statusObserved = $transcript.Contains("?? docs/runbooks/headless-agent-proof.md")
@@ -183,6 +193,8 @@ function Invoke-ClaudeStage {
         exit_code = $exitCode
         expected_marker = $expectedMarker
         marker_observed = $markerObserved
+        full_gpu_required = [bool]$RequireFullGpu
+        full_gpu_observed = $fullGpuObserved
         repository_read_observed = $readObserved
         git_status_marker_observed = $statusObserved
         passed = $passed
@@ -195,6 +207,7 @@ function Invoke-ClaudeStage {
         wrapper = $wrapperPath
         git_status = $gitStatusPath
         git_diff = $gitDiffPath
+        ollama_ps = $ollamaPsPath
         target_file_artifact = if (Test-Path -LiteralPath $targetArtifactPath) { $targetArtifactPath } else { $null }
     }
     Write-JsonFile $result (Join-Path $StageDirectory "result.json")
@@ -247,6 +260,7 @@ try {
         captured_at = (Get-Date).ToString("o")
         repository = $repoRoot
         repository_commit = (& git -C $repoRoot rev-parse HEAD).Trim()
+        stand_id = $StandId
         endpoint = $Endpoint
         models = $Models
         stages = $Stages
@@ -254,6 +268,7 @@ try {
         claude_executable = $claudeExe
         claude_version = (& $claudeExe --version | Out-String).Trim()
         permission_mode = "bypassPermissions"
+        require_full_gpu = [bool]$RequireFullGpu
         session_persistence = $false
         artifact_root = $runDirectory
         environment = [ordered]@{
@@ -302,25 +317,31 @@ try {
 
     & ollama ps |
         Set-Content -LiteralPath (Join-Path $runDirectory "ollama-ps-after.txt") -Encoding UTF8
+    $ollamaServerLog = Join-Path $env:LOCALAPPDATA "Ollama\server.log"
+    if (Test-Path -LiteralPath $ollamaServerLog) {
+        Get-Content -LiteralPath $ollamaServerLog -Tail 300 |
+            Set-Content -LiteralPath (Join-Path $runDirectory "ollama-server-tail-after.log") -Encoding UTF8
+    }
 
     $markdown = @(
         "# Claude Code Headless Ollama Run"
         ""
         ('- Captured at: `{0}`' -f (Get-Date -Format o))
+        ('- Stand ID: `{0}`' -f $StandId)
         ('- Endpoint: `{0}`' -f $Endpoint)
         ('- Artifacts: `{0}`' -f $runDirectory)
         '- Permission mode: `bypassPermissions`'
         "- Session persistence: disabled"
         ""
-        "| Model | Stage | Exit | Timed out | Seconds | Target file exists | Passed |"
-        "|---|---|---:|---|---:|---|---|"
+        "| Model | Stage | Exit | Timed out | Seconds | Full GPU | Target file exists | Passed |"
+        "|---|---|---:|---|---:|---|---|---|"
     )
     foreach ($row in $summaryRows) {
-        $markdown += "| ``$($row.model)`` | ``$($row.stage)`` | ``$($row.exit_code)`` | ``$($row.timed_out)`` | ``$($row.elapsed_seconds)`` | ``$($row.target_file_exists)`` | ``$($row.passed)`` |"
+        $markdown += "| ``$($row.model)`` | ``$($row.stage)`` | ``$($row.exit_code)`` | ``$($row.timed_out)`` | ``$($row.elapsed_seconds)`` | ``$($row.full_gpu_observed)`` | ``$($row.target_file_exists)`` | ``$($row.passed)`` |"
     }
     $markdown -join "`r`n" |
         Set-Content -LiteralPath (Join-Path $runDirectory "summary.md") -Encoding UTF8
-    $summaryRows | Format-Table model, stage, exit_code, timed_out, elapsed_seconds, target_file_exists, passed -AutoSize
+    $summaryRows | Format-Table model, stage, exit_code, timed_out, elapsed_seconds, full_gpu_observed, target_file_exists, passed -AutoSize
     Write-Host "Artifacts: $runDirectory"
 }
 finally {

@@ -32,3 +32,12 @@
 - Added an Ollama Anthropic Messages surface probe with three-attempt model
   checks, raw JSON evidence, a Markdown report, and a source-backed
   compatibility analysis for Claude Code.
+- Expanded the validation contract into a multi-stand registry, added the
+  `win11-local-rx6800` hardware and component-placement profile, and added a
+  reusable stand record template.
+- Added a coder-only benchmark strategy and runbook covering open benchmark
+  sources, exact-model score handling, local candidate ordering, and the next
+  repository-editing evaluation ladder.
+- Added a strict full-GPU gate for the Windows coder track, recorded the
+  expanded eligibility results, excluded split CPU/GPU models, and selected
+  `qwen2.5-coder:14b` as the next bounded-fixture candidate.
