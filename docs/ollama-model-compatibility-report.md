@@ -1,7 +1,7 @@
 # Ollama Model Compatibility Report
 
 - Checked at base URL: `http://bruter:11434`
-- Models installed on server: `4`
+- Models installed on server: `5`
 
 ## Summary Table
 
@@ -11,6 +11,7 @@
 | gemma3:12b-it-q4_K_M | Yes | No | OK | Error: registry.ollama.ai/library/gemma3:12b-it-q4_K_M does not support tools | No | No | No | User documentation only | metadata tools=no<br>native tools error: registry.ollama.ai/library/gemma3:12b-it-q4_K_M does not support tools<br>/v1/messages tools error: registry.ollama.ai/library/gemma3:12b-it-q4_K_M does not support tools |
 | gemma4:e4b | Yes | Yes | OK | Structured tool call | Yes | No | Yes | Claude Code agent / coding | metadata tools=yes |
 | llama3.2:latest | Yes | Yes | OK | Structured tool call | Yes | No | Yes | Claude Code agent / coding | metadata tools=yes |
+| qwen3:8b-q4_K_M | Yes | Yes | OK | Structured tool call | Yes | No | Yes | Claude Code agent / coding | metadata tools=yes |
 
 ## Model Notes
 
@@ -47,6 +48,15 @@
 - Quantization: `Q4_K_M`
 - Context length: `131072`
 - Metadata capabilities: `completion, tools`
+- Native `/api/chat` tools result: `Structured tool call`
+- Notes: metadata tools=yes
+
+### qwen3:8b-q4_K_M
+
+- Size: `4.9 GB`
+- Quantization: `Q4_K_M`
+- Context length: `n/a`
+- Metadata capabilities: `completion, tools, thinking`
 - Native `/api/chat` tools result: `Structured tool call`
 - Notes: metadata tools=yes
 

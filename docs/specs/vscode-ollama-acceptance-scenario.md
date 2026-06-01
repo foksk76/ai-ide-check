@@ -41,7 +41,8 @@ Recommended candidate order:
 
 1. `gemma4:e4b`
 2. `llama3.2:latest`
-3. `qwen2.5-coder:7b-instruct-q4_K_M` as negative control
+3. `qwen3:8b-q4_K_M`
+4. `qwen2.5-coder:7b-instruct-q4_K_M` as negative control
 
 ## Operator Actions
 

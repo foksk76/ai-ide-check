@@ -36,7 +36,8 @@ This document is a preflight matrix. If any required row is not satisfied, the r
 |---|---|---|---|
 | `gemma4:e4b` | Positive candidate | First IDE run | Structured tool call observed in `/v1/messages` |
 | `llama3.2:latest` | Positive candidate | Second IDE run | Structured tool call observed in `/v1/messages` |
-| `qwen2.5-coder:7b-instruct-q4_K_M` | Negative control | Third IDE run | Prints tool-call JSON as text |
+| `qwen3:8b-q4_K_M` | Positive candidate | Third IDE run | Structured tool call observed in `/v1/messages` |
+| `qwen2.5-coder:7b-instruct-q4_K_M` | Negative control | Fourth IDE run | Prints tool-call JSON as text |
 | `gemma3:12b-it-q4_K_M` | Not agent-compatible | Optional documentation-only reference | API reports tools unsupported |
 
 ## Workstation Matrix
