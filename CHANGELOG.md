@@ -86,3 +86,6 @@
   Windows local roadmap: full CLI contract runs for GPT-OSS and Ministral,
   repeated reliability measurement, broader coder fixtures, and a separate
   VS Code comparison layer.
+- Reworked the Russian README into an article with a purpose statement,
+  neutral headings, reproducible process illustrations, task examples, and a
+  GPT-OSS reasoning example with the resulting tested code.

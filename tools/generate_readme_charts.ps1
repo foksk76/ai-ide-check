@@ -72,11 +72,98 @@ function New-BarChart {
     $image.Dispose()
 }
 
+function New-FlowChart {
+    param(
+        [string]$Path,
+        [string]$Title,
+        [string]$Subtitle,
+        [object[]]$Steps
+    )
+
+    $width = 1460
+    $height = 300
+    $image = [System.Drawing.Bitmap]::new($width, $height)
+    $graphics = [System.Drawing.Graphics]::FromImage($image)
+    $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
+    $graphics.Clear([System.Drawing.Color]::FromArgb(248, 250, 252))
+
+    $titleFont = [System.Drawing.Font]::new("Arial", 22, [System.Drawing.FontStyle]::Bold)
+    $subtitleFont = [System.Drawing.Font]::new("Arial", 11)
+    $stepFont = [System.Drawing.Font]::new("Arial", 13, [System.Drawing.FontStyle]::Bold)
+    $noteFont = [System.Drawing.Font]::new("Arial", 10)
+    $darkBrush = [System.Drawing.SolidBrush]::new([System.Drawing.Color]::FromArgb(30, 41, 59))
+    $mutedBrush = [System.Drawing.SolidBrush]::new([System.Drawing.Color]::FromArgb(71, 85, 105))
+    $arrowPen = [System.Drawing.Pen]::new([System.Drawing.Color]::FromArgb(100, 116, 139), 3)
+    $arrowPen.EndCap = [System.Drawing.Drawing2D.LineCap]::ArrowAnchor
+
+    $graphics.DrawString($Title, $titleFont, $darkBrush, 32, 20)
+    $graphics.DrawString($Subtitle, $subtitleFont, $mutedBrush, 34, 58)
+
+    $boxWidth = 190
+    $boxHeight = 82
+    $gap = 36
+    $x = 34
+    $y = 126
+    foreach ($step in $Steps) {
+        $boxBrush = [System.Drawing.SolidBrush]::new($step.Color)
+        $graphics.FillRectangle($boxBrush, $x, $y, $boxWidth, $boxHeight)
+        $boxBrush.Dispose()
+        $graphics.DrawString($step.Label, $stepFont, $darkBrush, $x + 14, $y + 15)
+        $graphics.DrawString($step.Note, $noteFont, $darkBrush, $x + 14, $y + 46)
+        if ($step -ne $Steps[-1]) {
+            $graphics.DrawLine($arrowPen, $x + $boxWidth + 6, $y + 41, $x + $boxWidth + $gap - 8, $y + 41)
+        }
+        $x += $boxWidth + $gap
+    }
+
+    $image.Save($Path, [System.Drawing.Imaging.ImageFormat]::Png)
+    $arrowPen.Dispose()
+    $mutedBrush.Dispose()
+    $darkBrush.Dispose()
+    $noteFont.Dispose()
+    $stepFont.Dispose()
+    $subtitleFont.Dispose()
+    $titleFont.Dispose()
+    $graphics.Dispose()
+    $image.Dispose()
+}
+
 $green = [System.Drawing.Color]::FromArgb(22, 163, 74)
 $blue = [System.Drawing.Color]::FromArgb(37, 99, 235)
 $amber = [System.Drawing.Color]::FromArgb(217, 119, 6)
 $purple = [System.Drawing.Color]::FromArgb(124, 58, 237)
 $teal = [System.Drawing.Color]::FromArgb(13, 148, 136)
+$lightBlue = [System.Drawing.Color]::FromArgb(191, 219, 254)
+$lightGreen = [System.Drawing.Color]::FromArgb(187, 247, 208)
+$lightAmber = [System.Drawing.Color]::FromArgb(253, 230, 138)
+$lightPurple = [System.Drawing.Color]::FromArgb(221, 214, 254)
+$lightTeal = [System.Drawing.Color]::FromArgb(153, 246, 228)
+$lightSlate = [System.Drawing.Color]::FromArgb(226, 232, 240)
+
+New-FlowChart `
+    -Path (Join-Path $OutputDirectory "testing-process.png") `
+    -Title (Get-Utf8Text "0JrQsNC6INC/0YDQvtGF0L7QtNC40YIg0L7QtNC40L0g0L/RgNC+0LPQvtC9") `
+    -Subtitle (Get-Utf8Text "0J7QtNC40L3QsNC60L7QstGL0Lkg0L/Rg9GC0Ywg0LTQu9GPINC60LDQttC00L7QuSDQvNC+0LTQtdC70Lg=") `
+    -Steps @(
+        @{ Label = (Get-Utf8Text "0JfQsNC00LDRh9Cw"); Note = (Get-Utf8Text "0YLQvtGH0L3Ri9C5INC30LDQv9GA0L7RgQ=="); Color = $lightBlue }
+        @{ Label = "Claude Code"; Note = (Get-Utf8Text "0LjQvdGB0YLRgNGD0LzQtdC90YLRiw=="); Color = $lightPurple }
+        @{ Label = (Get-Utf8Text "0J/RgNCw0LLQutCwINGE0LDQudC70LA="); Note = (Get-Utf8Text "0LLRgNC10LzQtdC90L3QsNGPINC60L7Qv9C40Y8="); Color = $lightAmber }
+        @{ Label = (Get-Utf8Text "0JfQsNC/0YPRgdC6INGC0LXRgdGC0L7Qsg=="); Note = "unittest"; Color = $lightGreen }
+        @{ Label = (Get-Utf8Text "0JLQvdC10YjQvdGP0Y8g0L/RgNC+0LLQtdGA0LrQsA=="); Note = "Git + GPU"; Color = $lightTeal }
+        @{ Label = (Get-Utf8Text "0J7RgtGH0ZHRgg=="); Note = (Get-Utf8Text "0YDQtdGI0LXQvdC40LU="); Color = $lightSlate }
+    )
+
+New-FlowChart `
+    -Path (Join-Path $OutputDirectory "testing-levels.png") `
+    -Title (Get-Utf8Text "0KPRgNC+0LLQvdC4INC+0YLQsdC+0YDQsCDQvNC+0LTQtdC70Lg=") `
+    -Subtitle (Get-Utf8Text "0J7RgiDQsdGL0YHRgtGA0L7Qs9C+INGE0LjQu9GM0YLRgNCwINC6INGA0LDQsdC+0YfQtdC80YMg0L/QvtC80L7RidC90LjQutGD") `
+    -Steps @(
+        @{ Label = "API"; Note = (Get-Utf8Text "0LTQvtGB0YLRg9C/0L3QvtGB0YLRjA=="); Color = $lightBlue }
+        @{ Label = (Get-Utf8Text "Q0xJLdC60L7QvdGC0YDQsNC60YI="); Note = (Get-Utf8Text "0YTQsNC50LvRiyDQuCDQutC+0LzQsNC90LTRiw=="); Color = $lightPurple }
+        @{ Label = (Get-Utf8Text "0JfQsNC00LDRh9C4INGBINGC0LXRgdGC0LDQvNC4"); Note = (Get-Utf8Text "0LrQsNGH0LXRgdGC0LLQviDQutC+0LTQsA=="); Color = $lightAmber }
+        @{ Label = (Get-Utf8Text "0J/QvtCy0YLQvtGA0Ys="); Note = (Get-Utf8Text "0YPRgdGC0L7QudGH0LjQstC+0YHRgtGM"); Color = $lightGreen }
+        @{ Label = "VS Code"; Note = (Get-Utf8Text "0YHRgNCw0LLQvdC10L3QuNC1"); Color = $lightTeal }
+    )
 
 New-BarChart `
     -Path (Join-Path $OutputDirectory "model-gpu-footprint.png") `
