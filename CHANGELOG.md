@@ -14,3 +14,4 @@
 - Prepared preflight-backed `run-002` package for `llama3.2:latest`.
 - Added `docs/runbooks/ide-agent-smoke-test.md` and refreshed the compatibility report.
 - Added server-side `bruter` API debug findings with raw request/response evidence.
+- Added reusable live-capture helper and runbook for the next IDE debug run.
