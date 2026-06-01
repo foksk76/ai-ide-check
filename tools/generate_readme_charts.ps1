@@ -132,3 +132,17 @@ New-BarChart `
         @{ Label = "Qwen 3 8B"; Value = 40960; Color = $green; Note = (Get-Utf8Text "0L/RgNC10LTQtdC7INC40YHRhdC+0LTQvdC+0Lkg0LzQvtC00LXQu9C4") }
         @{ Label = "Gemma 4 E4B"; Value = 131072; Color = $amber; Note = (Get-Utf8Text "0LvRg9GH0YjQtdC1INGA0LDQt9C80LXRidC10L3QuNC1OyDQvtCz0YDQsNC90LjRh9C10L3QvdGL0LUg0LfQsNC00LDRh9C4") }
     )
+
+New-BarChart `
+    -Path (Join-Path $OutputDirectory "model-coder-fixture-score.png") `
+    -Title (Get-Utf8Text "0JfQsNC00LDRh9C4INGBINGC0LXRgdGC0LDQvNC4OiDQv9C10YDQstGL0Lkg0LrRgNGD0LM=") `
+    -Subtitle (Get-Utf8Text "0JTQstC1INC90LXQsdC+0LvRjNGI0LjQtSDQt9Cw0LTQsNGH0Lg7INCy0YvRiNC1INC70YPRh9GI0LU=") `
+    -Maximum 2 `
+    -Suffix (Get-Utf8Text "INC40LcgMg==") `
+    -Rows @(
+        @{ Label = "GPT-OSS 20B"; Value = 2; Color = $teal; Note = (Get-Utf8Text "0LTQstC1INC30LDQtNCw0YfQuCDQv9GA0L7QudC00LXQvdGL") }
+        @{ Label = "Ministral 3 8B"; Value = 2; Color = $purple; Note = (Get-Utf8Text "0LTQstC1INC30LDQtNCw0YfQuCDQv9GA0L7QudC00LXQvdGL") }
+        @{ Label = "Gemma 4 E4B"; Value = 2; Color = $amber; Note = (Get-Utf8Text "0LTQstC1INC30LDQtNCw0YfQuCDQv9GA0L7QudC00LXQvdGLOyDQv9C+0LLRgtC+0YAgR2VtbWEg0L3QtdGB0YLQsNCx0LjQu9C10L0=") }
+        @{ Label = "Granite 4.1 8B"; Value = 1; Color = $blue; Note = (Get-Utf8Text "0L3QtSDRg9GH0ZHQuyDRgdC+0YHQtdC00L3QuNC1INC00LjQsNC/0LDQt9C+0L3Riw==") }
+        @{ Label = "Qwen 3 8B"; Value = 0; Color = $green; Note = (Get-Utf8Text "0L3QtSDQuNC30LzQtdC90LjQuyDRhNCw0LnQuw==") }
+    )

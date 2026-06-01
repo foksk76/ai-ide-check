@@ -418,12 +418,16 @@ After local gating:
 
 For `win11-local-rx6800`:
 
-1. `qwen3:8b-q4_K_M-ctx40k`
-2. `gemma4:e4b-ctx128k` for bounded benchmarks; agent reliability unresolved
-3. `granite4.1:8b-ctx32k`
-4. `ministral-3:8b-ctx32k` as an exploratory candidate; track repeatability
-5. `gpt-oss:20b-ctx32k` as a heavier exploratory candidate
+1. `gpt-oss:20b-ctx32k`
+2. `ministral-3:8b-ctx32k`; track repeatability
+3. `gemma4:e4b-ctx128k` for bounded benchmarks; agent reliability unresolved
+4. `granite4.1:8b-ctx32k`
+5. `qwen3:8b-q4_K_M-ctx40k` as a retained control after its `0/2` fixture result
 
 Keep `llama3.2:latest` as a negative control only.
 
 Exclude models with CPU or RAM spill from subsequent coder benchmarking.
+
+This order is preliminary coder-quality guidance, not a replacement for the
+full agent contract. The first fixture suite names source files explicitly and
+does not test autonomous repository discovery.

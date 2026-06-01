@@ -1,0 +1,13 @@
+Fix the implementation in src/tag_tools.py.
+
+Requirements:
+- normalize_tags(tags) accepts a list of strings.
+- Strip surrounding whitespace and lowercase each tag.
+- Ignore empty tags after stripping.
+- Remove duplicates while preserving first-seen order.
+- Raise TypeError when tags is not a list or an item is not a string.
+
+Inspect the existing files, edit only src/tag_tools.py, and run:
+python -m unittest discover -s tests -v
+
+Finish with a concise report grounded in the actual test result.

@@ -1,0 +1,14 @@
+Repair the implementation in src/ranges.py.
+
+Requirements:
+- merge_ranges(intervals) returns sorted merged intervals.
+- Merge overlapping intervals and directly touching intervals.
+- Do not mutate the input list.
+- Return an empty list for empty input.
+- Raise ValueError when any interval does not contain exactly two numbers or
+  when its start is greater than its end.
+
+Inspect the existing files, edit only src/ranges.py, and run:
+python -m unittest discover -s tests -v
+
+Finish with a concise report grounded in the actual test result.

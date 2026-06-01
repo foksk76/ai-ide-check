@@ -157,13 +157,19 @@ run. Include it as the fifth working profile.
 
 ## Phase 2: Local Coder Fixture
 
-Create a deterministic fixture suite before ranking models:
+Run the deterministic fixture suite:
 
 ```text
 fixtures/coder-bench/
   tasks/
   expected/
   runner/
+```
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\run_coder_fixture_bench.ps1 `
+  -RequireFullGpu `
+  -TimeoutSeconds 900
 ```
 
 Each task must provide:
@@ -176,6 +182,23 @@ Each task must provide:
 - elapsed time
 - final-answer review
 - `ollama ps` and server-log placement evidence
+
+The first two-task pass is recorded in:
+
+- [Local Coder Fixture First Pass](runs/2026-06-02-coder-fixture-first-pass.md)
+
+Current preliminary order:
+
+1. `gpt-oss:20b-ctx32k`
+2. `ministral-3:8b-ctx32k`
+3. `gemma4:e4b-ctx128k`, capability observed but repeatability unresolved
+4. `granite4.1:8b-ctx32k`
+5. `qwen3:8b-q4_K_M-ctx40k`
+
+The fixture `Passed` field is intentionally narrower than the integration
+contract: it records external test success, unchanged tests, and full-GPU
+placement. Do not promote it as a standalone agent-compatibility verdict.
+Cross-check with the Level 0 headless gate and review final-answer grounding.
 
 ## Phase 3: External Benchmarks
 

@@ -72,3 +72,13 @@
   handshake, structured tool use, and repository editing at `100% GPU`.
 - Refined the README charts to include working profiles only, added explanatory
   labels, and added a selected-context-window chart.
+- Added a deterministic two-task coder fixture suite with independent Python
+  tests and a reusable five-profile headless runner.
+- Recorded the first coder-fixture pass: GPT-OSS and Ministral passed both
+  tasks, Gemma passed both but failed a repeatability control, Granite passed
+  one task, and Qwen passed neither task.
+- Added a generated coder-fixture score chart and updated the Russian README
+  with the preliminary quality-based ordering.
+- Cross-checked the first coder fixture pass against the agent contract,
+  documented the intentionally narrower fixture verdict, classified observed
+  grounding failures, and updated the preliminary next-model order.
