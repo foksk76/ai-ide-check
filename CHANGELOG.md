@@ -3,6 +3,12 @@
 ## Unreleased
 
 ### Added
+- Added a future reverse-engineering evaluation direction with an isolated
+  Proxmox VE learning quest, evidence-driven branches, local-to-cloud model
+  escalation, and explicit stand-access requests before dynamic tests.
+- Updated the Windows roadmap with a parallel reverse-engineering model track,
+  added `rnj-1:8b` and Ministral 14B preflight steps, and added a bounded
+  `ministral-3:14b-ctx32k` Ollama profile for the RX 6800 placement gate.
 - Added the `ubuntu-local-rtx3080` stand snapshot and bash tooling to prepare
   and run Phase 1 CLI contract checks on the local Ubuntu CUDA stand.
 - Tightened the Linux Phase 1 runner with explicit `git status --short`

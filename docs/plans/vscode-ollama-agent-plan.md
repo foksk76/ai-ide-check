@@ -2,12 +2,15 @@
 
 ## Objective
 
-Select a practical local coding model for `win11-local-rx6800` with evidence
-from real Claude Code tool loops, repository edits, tests, and processor
-placement.
+Select practical local models for `win11-local-rx6800` with evidence from real
+Claude Code tool loops, repository edits, tests, and processor placement.
 
 Use Claude Code CLI headless mode as the primary repeatable path. Keep Claude
 Code for VS Code as a separate comparison layer.
+
+The coder-only ranking remains the first track. A parallel reverse-engineering
+learning track now evaluates models by role: specialized decompilation, routine
+analysis, deeper local analysis, and tool-driven quest orchestration.
 
 ## Current Position
 
@@ -35,6 +38,7 @@ Evidence:
 - [Agent validation contract](../contracts/vscode-ollama-agent-contract.md)
 - [Coder benchmark strategy](../specs/coder-model-benchmark-strategy.md)
 - [First coder fixture pass](../runbooks/runs/2026-06-02-coder-fixture-first-pass.md)
+- [Reverse-engineering evaluation idea](../specs/reverse-engineering-model-evaluation-idea.md)
 
 ## Decision Rules
 
@@ -183,6 +187,73 @@ Use external benchmarks as supporting evidence:
 Do not import public scores as local scores unless model identity, precision,
 benchmark version, prompt, scaffold, and attempt count match.
 
+## Parallel Track: Reverse-Engineering Learning Quest
+
+Status: model preflight next.
+
+Use the Windows RX 6800 host as the local-model evaluation stand. The Proxmox
+VE environment remains the isolated quest stand. Do not deploy firmware or run
+dynamic tests until access to that stand is explicitly requested and granted.
+
+Keep the model roles separate:
+
+| Role | Model | Current decision |
+|---|---|---|
+| Quest orchestration, bounded tool use, patch assistance | `gpt-oss:20b-ctx32k` | Baseline leader: already passed the Windows full-GPU gate and coder fixtures |
+| Fast routine analysis | `rnj-1:8b` | Installed; run Windows headless preflight next |
+| Lightweight comparison point | `ministral-3:8b-ctx32k` | Keep: existing `2/2` coder fixture result |
+| Deeper local analysis | `ministral-3:14b-ctx32k` | Build from the installed upstream `ministral-3:14b`; run placement-only gate first |
+| Ghidra pseudo-code refinement and assembly-to-C comparison | `llm4decompile:6.7b-v2-q4_K_M` | Import GGUF separately; do not treat as a Claude Code agent |
+
+Keep these as an experimental reserve after the first local matrix:
+
+| Model | Why defer |
+|---|---|
+| `deepseek-coder-v2:16b` | Useful low-level-code comparison, but Claude Code structured-tool behavior is not yet proven |
+| `devstral:24b` | Relevant agentic model, but its `14 GB` artifact leaves little RX 6800 headroom for context |
+| `granite4.1:8b-ctx32k` | Existing structured-tool control; coder fixture result was only `1/2` |
+
+Build the new Ministral profile:
+
+```powershell
+ollama create ministral-3:14b-ctx32k `
+  -f tools\modelfiles\ministral-3-14b-ctx32k.Modelfile
+```
+
+Run the cheap placement and tool-loop gates before adding reverse-engineering
+fixtures:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1 `
+  -StandId win11-local-rx6800 `
+  -Models rnj-1:8b,ministral-3:14b-ctx32k `
+  -Stages handshake,tool `
+  -RequireFullGpu `
+  -TimeoutSeconds 1200
+```
+
+Advance a model only when:
+
+- `ollama ps` reports `100% GPU`
+- Claude Code executes structured tools instead of printing pseudo-tool JSON
+- the final answer matches observed tool output
+- analysis claims remain hypotheses until external reproduction
+
+After preflight, add a small static-analysis fixture before touching the
+Proxmox VE quest stand:
+
+1. compare raw and refined Ghidra pseudo-code
+2. explain the suspected behavior and cite evidence
+3. rank the next bounded checks by probability and cost
+4. propose a defensive patch
+5. run independent regression checks where practical
+
+Only then continue to the isolated firmware quest:
+
+```text
+REQUEST STAND ACCESS
+```
+
 ## Automation Backlog
 
 Improve `tools/run_coder_fixture_bench.ps1`:
@@ -211,7 +282,7 @@ After each completed phase:
 
 ## Immediate Next Action
 
-Create and run one full CLI contract fixture for:
+Keep the coder-track next action:
 
 ```text
 gpt-oss:20b-ctx32k
@@ -220,3 +291,14 @@ ministral-3:8b-ctx32k
 
 The fixture must not name the implementation file. It should force repository
 inspection, edit the discovered file, run tests, and report the actual result.
+
+In parallel, build `ministral-3:14b-ctx32k` and run the cheap reverse-engineering
+model preflight for:
+
+```text
+rnj-1:8b
+ministral-3:14b-ctx32k
+```
+
+Do not request Proxmox VE access yet. The first reverse-engineering artifact
+should be a static local fixture and a recorded model-selection result.
