@@ -189,7 +189,7 @@ benchmark version, prompt, scaffold, and attempt count match.
 
 ## Parallel Track: Reverse-Engineering Learning Quest
 
-Status: model preflight next.
+Status: first model preflight completed; static fixture next.
 
 Use the Windows RX 6800 host as the local-model evaluation stand. The Proxmox
 VE environment remains the isolated quest stand. Do not deploy firmware or run
@@ -199,10 +199,10 @@ Keep the model roles separate:
 
 | Role | Model | Current decision |
 |---|---|---|
-| Quest orchestration, bounded tool use, patch assistance | `gpt-oss:20b-ctx32k` | Baseline leader: already passed the Windows full-GPU gate and coder fixtures |
-| Fast routine analysis | `rnj-1:8b` | Installed; run Windows headless preflight next |
-| Lightweight comparison point | `ministral-3:8b-ctx32k` | Keep: existing `2/2` coder fixture result |
-| Deeper local analysis | `ministral-3:14b-ctx32k` | Build from the installed upstream `ministral-3:14b`; run placement-only gate first |
+| Quest orchestration, bounded tool use, patch assistance | `gpt-oss:20b-ctx32k` | Baseline leader: passed the Windows full-GPU gate, coder fixtures, and complete headless contract |
+| Fast routine analysis | `rnj-1:8b` | Deferred: `100% GPU`, but the current Ollama path produced invalid output and a sampler panic |
+| Lightweight comparison point | `ministral-3:8b-ctx32k` | Keep with limits: coder fixture `2/2`; the full agent step skipped the required repository read |
+| Deeper local analysis | `ministral-3:14b-ctx32k` | Deferred on RX 6800: `12%/88% CPU/GPU`, `40/41` layers on GPU |
 | Ghidra pseudo-code refinement and assembly-to-C comparison | `llm4decompile:6.7b-v2-q4_K_M` | Import GGUF separately; do not treat as a Claude Code agent |
 
 Keep these as an experimental reserve after the first local matrix:
@@ -213,24 +213,17 @@ Keep these as an experimental reserve after the first local matrix:
 | `devstral:24b` | Relevant agentic model, but its `14 GB` artifact leaves little RX 6800 headroom for context |
 | `granite4.1:8b-ctx32k` | Existing structured-tool control; coder fixture result was only `1/2` |
 
-Build the new Ministral profile:
+Models deferred from the current stand are tracked in
+[Prospective Model Configurations](prospective-model-configurations.md).
 
-```powershell
-ollama create ministral-3:14b-ctx32k `
-  -f tools\modelfiles\ministral-3-14b-ctx32k.Modelfile
-```
+Recorded preflight results:
 
-Run the cheap placement and tool-loop gates before adding reverse-engineering
-fixtures:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1 `
-  -StandId win11-local-rx6800 `
-  -Models rnj-1:8b,ministral-3:14b-ctx32k `
-  -Stages handshake,tool `
-  -RequireFullGpu `
-  -TimeoutSeconds 1200
-```
+| Profile | Placement | Result | Decision |
+|---|---|---|---|
+| `rnj-1:8b` | `100% GPU`, `33/33` layers | Invalid numeric output and Ollama sampler panic | Retry only after Ollama or template change |
+| `ministral-3:14b-ctx32k` | `12%/88% CPU/GPU`, `40/41` layers on GPU | Strict full-GPU gate failed | Retry with lower context or larger VRAM |
+| `gpt-oss:20b-ctx32k` | `100% GPU` | Passed `handshake`, `tool`, and `agent` | Keep as full-contract baseline |
+| `ministral-3:8b-ctx32k` | `100% GPU` | Passed `handshake` and `tool`; agent skipped required repository read | Keep as limited routine comparator |
 
 Advance a model only when:
 
@@ -238,6 +231,11 @@ Advance a model only when:
 - Claude Code executes structured tools instead of printing pseudo-tool JSON
 - the final answer matches observed tool output
 - analysis claims remain hypotheses until external reproduction
+
+The raw comparison artifacts are retained locally under
+`.artifacts/claude-ollama-headless/20260602T201108/`,
+`.artifacts/claude-ollama-headless/20260602T195846/`, and
+`.artifacts/claude-ollama-headless/20260602T200758/`.
 
 After preflight, add a small static-analysis fixture before touching the
 Proxmox VE quest stand:
@@ -292,13 +290,10 @@ ministral-3:8b-ctx32k
 The fixture must not name the implementation file. It should force repository
 inspection, edit the discovered file, run tests, and report the actual result.
 
-In parallel, build `ministral-3:14b-ctx32k` and run the cheap reverse-engineering
-model preflight for:
-
-```text
-rnj-1:8b
-ministral-3:14b-ctx32k
-```
+In parallel, run the first static local reverse-engineering fixture with the
+accepted profiles. Keep deferred profiles in
+[Prospective Model Configurations](prospective-model-configurations.md) until
+their matching stand or runtime configuration is available.
 
 Do not request Proxmox VE access yet. The first reverse-engineering artifact
 should be a static local fixture and a recorded model-selection result.

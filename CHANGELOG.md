@@ -3,6 +3,10 @@
 ## Unreleased
 
 ### Added
+- Added a backlog of deferred models, promising retry configurations, and
+  retained local artifact references for future Windows stand comparisons.
+- Added reproducible `ctx32k` Ollama profiles for the first three compact
+  reserve candidates: Ministral 3 3B, Granite 4.1 3B, and Phi-4 Mini 3.8B.
 - Added a future reverse-engineering evaluation direction with an isolated
   Proxmox VE learning quest, evidence-driven branches, local-to-cloud model
   escalation, and explicit stand-access requests before dynamic tests.
