@@ -10,6 +10,9 @@
   candidates.
 - Recorded the grounded Ubuntu RTX 3080 contract run: Ministral passed at
   `100% GPU`, while Qwen 3 8B failed after repeatedly writing invalid Python.
+- Recorded the three-attempt Ubuntu reliability pass for Ministral and Granite,
+  tightened test-command detection, and added elapsed time to future Linux
+  verdict files.
 
 ## [0.1.0] - 2026-06-02
 

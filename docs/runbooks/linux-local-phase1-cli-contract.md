@@ -127,3 +127,32 @@ The grounded-contract run captured under
 `qwen3:8b-q4_K_M-ctx32k` repeatedly wrote an unterminated docstring, left the
 fixture with a Python `SyntaxError`, and returned manual repair advice instead
 of completing the task.
+
+## Reliability Pass
+
+Three grounded-contract attempts per promoted profile were captured under:
+
+```text
+.artifacts/linux-phase1-cli-contract/20260602T182113/
+.artifacts/linux-phase1-cli-contract/20260602T182526/
+.artifacts/linux-phase1-cli-contract/20260602T183041/
+```
+
+| Model | Pass rate | Full GPU | External tests | Grounded final | Seconds | Median |
+|---|---:|---:|---:|---:|---|---:|
+| `ministral-3:8b-ctx32k` | `2/3` | `3/3` | `2/3` | `3/3` | `157`, `150`, `373` | `157` |
+| `granite4.1:8b-ctx32k` | `2/3` | `3/3` | `2/3` | `3/3` | `96`, `165`, `132` | `132` |
+
+The first Granite attempt is counted as a reviewed pass. It ran
+`python3 tests/test_tag_tools.py` and passed `4/4`, but the original mechanical
+detector only recognized commands containing `unittest`. The runner now also
+recognizes direct test-file and `pytest` execution.
+
+Observed reliability failures:
+
+- Ministral preserved an empty normalized tag in one attempt.
+- Granite wrote literal `\n` sequences into Python source in one attempt,
+  leaving a `SyntaxError`.
+
+Both profiles remain in the candidate set, but neither is reliable enough to
+promote from a single attractive pass.

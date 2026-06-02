@@ -139,6 +139,7 @@ for model in "${models[@]}"; do
   git -C "$workspace" commit --quiet -m "fixture baseline"
 
   started_at="$(date --iso-8601=seconds)"
+  started_epoch="$(date +%s)"
   set +e
   (
     cd "$workspace"
@@ -196,7 +197,8 @@ for model in "${models[@]}"; do
     read_tool_observed=true
   fi
   validation_tool_observed=false
-  if grep -F '"name":"Bash"' "$case_dir/stdout.stream.jsonl" | grep -Fq 'unittest'; then
+  if grep -F '"name":"Bash"' "$case_dir/stdout.stream.jsonl" \
+    | grep -Eq 'unittest|pytest|tests/test_[^"]*\.py'; then
     validation_tool_observed=true
   fi
   status_tool_observed=false
@@ -231,6 +233,8 @@ PY
   fi
 
   ended_at="$(date --iso-8601=seconds)"
+  ended_epoch="$(date +%s)"
+  elapsed_seconds="$((ended_epoch - started_epoch))"
   python3 - "$case_dir/result.json" <<PY
 import json
 import sys
@@ -240,6 +244,7 @@ result = {
     "model": ${model@Q},
     "started_at": ${started_at@Q},
     "ended_at": ${ended_at@Q},
+    "elapsed_seconds": $elapsed_seconds,
     "timeout_seconds": $timeout_seconds,
     "claude_exit_code": $claude_exit,
     "tests_exit_code": $tests_exit,
