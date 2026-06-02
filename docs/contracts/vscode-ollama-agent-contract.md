@@ -47,10 +47,15 @@ changes enough that results are no longer directly comparable.
 |---|---|---|---|---|
 | `linux-bruter-remote` | Operator workstation and remote Linux Ollama server | `http://bruter:11434` | Record from the Linux stand when refreshing its snapshot | Historical Linux IDE comparison and remote diagnostics |
 | `win11-local-rx6800` | VS Code, Claude Code, Ollama, and models on one Windows host | `http://localhost:11434` | `AMD Radeon RX 6800`, `16 GB GDDR6` | Primary Windows CLI headless validation and VS Code comparison |
+| `ubuntu-local-rtx3080` | VS Code remote server, Claude Code CLI, Ollama, and models on one Ubuntu host | `http://localhost:11434` | `NVIDIA GeForce RTX 3080`, `10240 MiB` | Local Ubuntu CUDA CLI contract validation |
 
 Current detailed Windows snapshot:
 
 - [Windows Local Stand Snapshot](../runbooks/windows-local-stand-2026-06-01.md)
+
+Current detailed Ubuntu snapshot:
+
+- [Ubuntu Local Stand Snapshot](../runbooks/ubuntu-local-stand-2026-06-02.md)
 
 Use the reusable record when adding a stand:
 

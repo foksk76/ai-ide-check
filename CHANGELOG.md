@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Added
+- Added the `ubuntu-local-rtx3080` stand snapshot and bash tooling to prepare
+  and run Phase 1 CLI contract checks on the local Ubuntu CUDA stand.
+- Tightened the Linux Phase 1 runner with explicit `git status --short`
+  grounding and added `ctx32k` profiles for the next Qwen 3.5 and Gemma 4 E2B
+  candidates.
+- Recorded the grounded Ubuntu RTX 3080 contract run: Ministral passed at
+  `100% GPU`, while Qwen 3 8B failed after repeatedly writing invalid Python.
+
 ## [0.1.0] - 2026-06-02
 
 ### Added
