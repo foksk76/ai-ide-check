@@ -24,6 +24,8 @@ Completed foundations:
 - model-specific context profiling
 - two-task coder fixture suite with independent tests
 - first coder-quality pass and contract cross-check
+- full headless contract baseline for `gpt-oss:20b-ctx32k`
+- partial headless contract evidence for `ministral-3:8b-ctx32k`
 
 Current preliminary coder-quality order:
 
@@ -58,14 +60,16 @@ repository discovery.
 
 ## Phase 1: Full CLI Contract For The Leaders
 
-Status: next.
+Status: partially completed.
 
-Run the complete CLI headless contract scenario for:
+Recorded result:
 
-1. `gpt-oss:20b-ctx32k`
-2. `ministral-3:8b-ctx32k`
+| Model | Result | Decision |
+|---|---|---|
+| `gpt-oss:20b-ctx32k` | Passed `handshake`, `tool`, and `agent` with `100% GPU` | Current default local model |
+| `ministral-3:8b-ctx32k` | Passed `handshake` and `tool`; agent step skipped the required repository read | Keep for retry and routine comparison only |
 
-The prompt must require:
+Any new full CLI contract attempt must require:
 
 - repository context reads
 - autonomous relevant-file selection without naming the implementation file
@@ -88,14 +92,13 @@ Record:
 
 Acceptance:
 
-- both leaders receive at least one full-contract attempt
-- GPT-OSS remains the default candidate only if its final answer is grounded
+- GPT-OSS remains the default candidate while its final answers stay grounded
 - Ministral remains in the race only if its retry behavior is measured, not
   hand-waved away
 
 ## Phase 2: Reliability Pass
 
-Status: after Phase 1.
+Status: next.
 
 Extend `tools/run_coder_fixture_bench.ps1` with repeated attempts and promoted
 contract metadata.
@@ -194,6 +197,8 @@ Status: first model preflight completed; static fixture next.
 Use the Windows RX 6800 host as the local-model evaluation stand. The Proxmox
 VE environment remains the isolated quest stand. Do not deploy firmware or run
 dynamic tests until access to that stand is explicitly requested and granted.
+The current stand split is defined in
+[Reverse Engineering System Roles](../specs/reverse-engineering-model-system-roles.md).
 
 Keep the model roles separate:
 
@@ -214,7 +219,7 @@ Keep these as an experimental reserve after the first local matrix:
 | `granite4.1:8b-ctx32k` | Existing structured-tool control; coder fixture result was only `1/2` |
 
 Models deferred from the current stand are tracked in
-[Prospective Model Configurations](prospective-model-configurations.md).
+[Model Retry Backlog](model-retry-backlog.md).
 
 Recorded preflight results:
 
@@ -280,20 +285,25 @@ After each completed phase:
 
 ## Immediate Next Action
 
-Keep the coder-track next action:
+Run the reliability pass for:
 
 ```text
 gpt-oss:20b-ctx32k
 ministral-3:8b-ctx32k
+gemma4:e4b-ctx128k
 ```
 
-The fixture must not name the implementation file. It should force repository
-inspection, edit the discovered file, run tests, and report the actual result.
+The fixture must include repeated attempts and record failure class, latency,
+final-answer grounding, and full-GPU placement.
 
-In parallel, run the first static local reverse-engineering fixture with the
-accepted profiles. Keep deferred profiles in
-[Prospective Model Configurations](prospective-model-configurations.md) until
-their matching stand or runtime configuration is available.
+In parallel, prepare the first static local reverse-engineering fixture. Keep
+deferred profiles in [Model Retry Backlog](model-retry-backlog.md) until their
+matching stand or runtime configuration is available.
 
 Do not request Proxmox VE access yet. The first reverse-engineering artifact
-should be a static local fixture and a recorded model-selection result.
+should be a static fixture and a recorded model-selection result. Dynamic work
+still requires:
+
+```text
+REQUEST STAND ACCESS
+```

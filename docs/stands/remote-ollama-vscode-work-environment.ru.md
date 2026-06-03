@@ -323,7 +323,7 @@ sudo ufw status numbered
 ## Рекомендуемое размещение в проекте
 
 ```text
-docs/technical-work-environment.ru.md
+docs/stands/remote-ollama-vscode-work-environment.ru.md
 ```
 
 ## Рабочее правило

@@ -1,4 +1,4 @@
-# Run Record Template: VS Code Agent + Ollama
+﻿# Run Record Template: VS Code Agent + Ollama
 
 ## Run Identity
 
@@ -19,9 +19,9 @@
 
 ## Scenario Reference
 
-- Scenario doc: [docs/specs/vscode-ollama-acceptance-scenario.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-acceptance-scenario.md:1)
-- Environment matrix used: [docs/specs/vscode-ollama-environment-matrix.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-environment-matrix.md:1)
-- Failure taxonomy used: [docs/specs/vscode-ollama-failure-taxonomy.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-failure-taxonomy.md:1)
+- Scenario doc: [docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md](../archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md)
+- Environment matrix used: [docs/archive/early-vscode-validation/vscode-ollama-environment-matrix.md](../archive/early-vscode-validation/vscode-ollama-environment-matrix.md)
+- Failure taxonomy used: [docs/archive/early-vscode-validation/vscode-ollama-failure-taxonomy.md](../archive/early-vscode-validation/vscode-ollama-failure-taxonomy.md)
 
 ## Exact Prompt
 
@@ -48,7 +48,7 @@ Paste the exact prompt used here.
 
 ## Expected Artifact Check
 
-- Target file expected: `docs/runbooks/ide-agent-smoke-test.md`
+- Target file expected: `docs/archive/early-vscode-validation/ide-agent-smoke-test.md`
 - Was target file created?:
 - Did file content reflect repository facts?:
 - Did the agent run `python3 tools/check_ollama_model_compat.py`?:

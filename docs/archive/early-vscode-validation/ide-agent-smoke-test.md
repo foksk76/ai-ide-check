@@ -1,4 +1,4 @@
-# IDE Agent Smoke Test
+﻿# IDE Agent Smoke Test
 
 ## Current Validation Scope
 
@@ -48,6 +48,6 @@ OLLAMA_BASE_URL=http://bruter:11434 python3 tools/check_ollama_model_compat.py
 This runbook is based on the current repository validation docs, especially:
 
 - `docs/contracts/vscode-ollama-agent-contract.md`
-- `docs/specs/vscode-ollama-agent-spec.md`
-- `docs/specs/vscode-ollama-acceptance-scenario.md`
-- `docs/ollama-model-compatibility-report.md`
+- `docs/archive/early-vscode-validation/vscode-ollama-agent-spec.md`
+- `docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md`
+- `docs/reports/ollama-model-compatibility-report.md`

@@ -323,7 +323,7 @@ sudo ufw status numbered
 ## Recommended Project Placement
 
 ```text
-docs/technical-work-environment.en.md
+docs/stands/remote-ollama-vscode-work-environment.en.md
 ```
 
 ## Operating Rule

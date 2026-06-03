@@ -1,4 +1,4 @@
-# Environment Matrix: VS Code Agent + Ollama
+﻿# Environment Matrix: VS Code Agent + Ollama
 
 ## Objective
 
@@ -107,4 +107,4 @@ For every validation run, record:
 
 ## Next Use
 
-Use this matrix immediately before following [docs/specs/vscode-ollama-acceptance-scenario.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-acceptance-scenario.md:1).
+Use this matrix immediately before following [docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md](../archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md).

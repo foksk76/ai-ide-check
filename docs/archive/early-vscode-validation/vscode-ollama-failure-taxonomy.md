@@ -1,4 +1,4 @@
-# Failure Taxonomy: VS Code Agent + Ollama
+﻿# Failure Taxonomy: VS Code Agent + Ollama
 
 ## Objective
 
@@ -93,7 +93,7 @@ Signals:
 
 Checks:
 
-- review [docs/ollama-model-compatibility-report.md](/home/krl/git/check_sip/docs/ollama-model-compatibility-report.md:1)
+- review [docs/reports/ollama-model-compatibility-report.md](../reports/ollama-model-compatibility-report.md)
 - compare candidate model against the positive shortlist
 
 ### `workspace-write`
@@ -104,7 +104,7 @@ Definition:
 
 Examples:
 
-- agent reads files but cannot create `docs/runbooks/ide-agent-smoke-test.md`
+- agent reads files but cannot create `docs/archive/early-vscode-validation/ide-agent-smoke-test.md`
 - write tool exists but fails in practice
 
 Signals:
@@ -208,5 +208,5 @@ Collect:
 
 Use with:
 
-- [docs/specs/vscode-ollama-environment-matrix.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-environment-matrix.md:1)
-- [docs/specs/vscode-ollama-acceptance-scenario.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-acceptance-scenario.md:1)
+- [docs/archive/early-vscode-validation/vscode-ollama-environment-matrix.md](../archive/early-vscode-validation/vscode-ollama-environment-matrix.md)
+- [docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md](../archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md)

@@ -15,7 +15,7 @@ ubuntu-local-rtx3080
 
 The verified baseline is:
 
-- [Ubuntu Local Stand Snapshot](ubuntu-local-stand-2026-06-02.md)
+- [Ubuntu Local Stand Snapshot](../stands/ubuntu-local-rtx3080-2026-06-02.md)
 
 ## Preflight
 

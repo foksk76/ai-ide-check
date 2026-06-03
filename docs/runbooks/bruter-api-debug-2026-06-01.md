@@ -1,4 +1,4 @@
-# Bruter API Debug Findings
+﻿# Bruter API Debug Findings
 
 ## Date
 
@@ -194,7 +194,7 @@ Additional capture detail:
 What this means:
 
 - the model did transition into an action attempt
-- but it did not stay grounded in the requested target path `docs/runbooks/ide-agent-smoke-test.md`
+- but it did not stay grounded in the requested target path `docs/archive/early-vscode-validation/ide-agent-smoke-test.md`
 - after the failed write, it fell back to generic permission-help text unrelated to the actual repository layout
 - the IDE/session context itself may also be polluting the request with stale or irrelevant selection material
 

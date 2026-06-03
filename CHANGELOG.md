@@ -3,6 +3,10 @@
 ## Unreleased
 
 ### Added
+- Added a documentation index, moved stand snapshots and reports into dedicated
+  directories, and archived the early VS Code-first validation notes.
+- Reworked the root README as a repository entry point and separated
+  human-facing reports/articles from automated validation scripts.
 - Added a backlog of deferred models, promising retry configurations, and
   retained local artifact references for future Windows stand comparisons.
 - Added reproducible `ctx32k` Ollama profiles for the first three compact
@@ -36,7 +40,8 @@
 - Preflight-backed `run-001` record for `gemma4:e4b` and refreshed candidate log with `qwen3:8b-q4_K_M`.
 - Recorded failed `run-001` IDE outcome for `gemma4:e4b` and refined failure taxonomy for clarification-only behavior.
 - Prepared preflight-backed `run-002` package for `llama3.2:latest`.
-- Added `docs/runbooks/ide-agent-smoke-test.md` and refreshed the compatibility report.
+- Added `docs/archive/early-vscode-validation/ide-agent-smoke-test.md` and
+  refreshed the compatibility report.
 - Added server-side `bruter` API debug findings with raw request/response evidence.
 - Added reusable live-capture helper and runbook for the next IDE debug run.
 - Recorded live-capture findings for `run-002` and prepared `run-003` for `qwen3:8b-q4_K_M`.

@@ -1,4 +1,4 @@
-# VS Code + Ollama Model Run Log
+﻿# VS Code + Ollama Model Run Log
 
 ## Purpose
 
@@ -6,10 +6,10 @@ This log is the central registry of IDE validation runs for candidate Ollama mod
 
 Use it together with:
 
-- [docs/specs/vscode-ollama-acceptance-scenario.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-acceptance-scenario.md:1)
-- [docs/specs/vscode-ollama-environment-matrix.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-environment-matrix.md:1)
-- [docs/specs/vscode-ollama-failure-taxonomy.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-failure-taxonomy.md:1)
-- [docs/runbooks/vscode-ollama-run-record-template.md](/home/krl/git/check_sip/docs/runbooks/vscode-ollama-run-record-template.md:1)
+- [docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md](../archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md)
+- [docs/archive/early-vscode-validation/vscode-ollama-environment-matrix.md](../archive/early-vscode-validation/vscode-ollama-environment-matrix.md)
+- [docs/archive/early-vscode-validation/vscode-ollama-failure-taxonomy.md](../archive/early-vscode-validation/vscode-ollama-failure-taxonomy.md)
+- [docs/runbooks/vscode-ollama-run-record-template.md](../runbooks/vscode-ollama-run-record-template.md)
 
 ## Status Summary
 
@@ -63,7 +63,7 @@ This log becomes decision-ready when:
 
 For the next real IDE execution:
 
-1. Copy [docs/runbooks/vscode-ollama-run-record-template.md](/home/krl/git/check_sip/docs/runbooks/vscode-ollama-run-record-template.md:1) into a dated run note.
+1. Copy [docs/runbooks/vscode-ollama-run-record-template.md](../runbooks/vscode-ollama-run-record-template.md) into a dated run note.
 2. Use a fresh record for the negative control `qwen2.5-coder:7b-instruct-q4_K_M` if you want a final contrast run.
 3. Otherwise, treat the current evidence as sufficient to conclude that positive API precheck does not predict successful IDE agent behavior.
 4. Update this log immediately after any additional run.

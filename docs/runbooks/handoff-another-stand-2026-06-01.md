@@ -1,4 +1,4 @@
-# Handoff For Continuation On Another Stand
+﻿# Handoff For Continuation On Another Stand
 
 ## Current Goal
 
@@ -21,14 +21,14 @@ The key question is not basic API reachability. It is whether this stack can com
 
 This repository already contains:
 
-- contract: [docs/contracts/vscode-ollama-agent-contract.md](/home/krl/git/check_sip/docs/contracts/vscode-ollama-agent-contract.md:1)
-- stage spec: [docs/specs/vscode-ollama-agent-spec.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-agent-spec.md:1)
-- acceptance scenario: [docs/specs/vscode-ollama-acceptance-scenario.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-acceptance-scenario.md:1)
-- environment matrix: [docs/specs/vscode-ollama-environment-matrix.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-environment-matrix.md:1)
-- failure taxonomy: [docs/specs/vscode-ollama-failure-taxonomy.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-failure-taxonomy.md:1)
-- model run log: [docs/runbooks/vscode-ollama-model-run-log.md](/home/krl/git/check_sip/docs/runbooks/vscode-ollama-model-run-log.md:1)
-- compatibility checker: [tools/check_ollama_model_compat.py](/home/krl/git/check_sip/tools/check_ollama_model_compat.py:1)
-- live capture helper: [tools/bruter_ollama_capture.sh](/home/krl/git/check_sip/tools/bruter_ollama_capture.sh:1)
+- contract: [docs/contracts/vscode-ollama-agent-contract.md](../contracts/vscode-ollama-agent-contract.md)
+- stage spec: [docs/archive/early-vscode-validation/vscode-ollama-agent-spec.md](../archive/early-vscode-validation/vscode-ollama-agent-spec.md)
+- acceptance scenario: [docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md](../archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md)
+- environment matrix: [docs/archive/early-vscode-validation/vscode-ollama-environment-matrix.md](../archive/early-vscode-validation/vscode-ollama-environment-matrix.md)
+- failure taxonomy: [docs/archive/early-vscode-validation/vscode-ollama-failure-taxonomy.md](../archive/early-vscode-validation/vscode-ollama-failure-taxonomy.md)
+- model run log: [docs/runbooks/vscode-ollama-model-run-log.md](../runbooks/vscode-ollama-model-run-log.md)
+- compatibility checker: [tools/check_ollama_model_compat.py](../tools/check_ollama_model_compat.py)
+- live capture helper: [tools/bruter_ollama_capture.sh](../tools/bruter_ollama_capture.sh)
 
 ## Current Proven Facts
 
@@ -53,7 +53,7 @@ Known negative control:
 
 The precheck report is in:
 
-- [docs/ollama-model-compatibility-report.md](/home/krl/git/check_sip/docs/ollama-model-compatibility-report.md:1)
+- [docs/reports/ollama-model-compatibility-report.md](../reports/ollama-model-compatibility-report.md)
 
 ### IDE Reality So Far
 
@@ -76,9 +76,9 @@ The precheck report is in:
 
 Detailed records:
 
-- [run-001](/home/krl/git/check_sip/docs/runbooks/runs/2026-06-01-run-001-gemma4-e4b.md)
-- [run-002](/home/krl/git/check_sip/docs/runbooks/runs/2026-06-01-run-002-llama3.2-latest.md)
-- [run-003](/home/krl/git/check_sip/docs/runbooks/runs/2026-06-01-run-003-qwen3-8b-q4_K_M.md)
+- [run-001](../runbooks/runs/2026-06-01-run-001-gemma4-e4b.md)
+- [run-002](../runbooks/runs/2026-06-01-run-002-llama3.2-latest.md)
+- [run-003](../runbooks/runs/2026-06-01-run-003-qwen3-8b-q4_K_M.md)
 
 ## Strongest Current Interpretation
 
@@ -121,13 +121,13 @@ Do a clean-room rerun instead of just switching models again.
 2. Start live capture:
    - `tools/bruter_ollama_capture.sh start <label>`
 3. Use the exact acceptance prompt from:
-   - [docs/specs/vscode-ollama-acceptance-scenario.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-acceptance-scenario.md:1)
+   - [docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md](../archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md)
 4. Prefer testing only one candidate first in the new clean room:
    - `qwen3:8b-q4_K_M`
 5. Stop live capture:
    - `tools/bruter_ollama_capture.sh stop <pcap-path>`
 6. Record the run in a fresh run note based on:
-   - [docs/runbooks/vscode-ollama-run-record-template.md](/home/krl/git/check_sip/docs/runbooks/vscode-ollama-run-record-template.md:1)
+   - [docs/runbooks/vscode-ollama-run-record-template.md](../runbooks/vscode-ollama-run-record-template.md)
 
 ## Recommended Priority On Another Stand
 
@@ -151,7 +151,7 @@ During the next capture, inspect:
 
 Treat the new stand as successful only if one model:
 
-- creates `docs/runbooks/ide-agent-smoke-test.md`
+- creates `docs/archive/early-vscode-validation/ide-agent-smoke-test.md`
 - uses repository facts
 - runs `python3 tools/check_ollama_model_compat.py`
 - reports the real result correctly
@@ -162,7 +162,7 @@ If none of the models can do that under clean-room conditions, the working concl
 
 ## Recommended First Files To Read After Handoff
 
-1. [docs/runbooks/bruter-api-debug-2026-06-01.md](/home/krl/git/check_sip/docs/runbooks/bruter-api-debug-2026-06-01.md:1)
-2. [docs/runbooks/vscode-ollama-model-run-log.md](/home/krl/git/check_sip/docs/runbooks/vscode-ollama-model-run-log.md:1)
-3. [docs/specs/vscode-ollama-acceptance-scenario.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-acceptance-scenario.md:1)
-4. [docs/runbooks/bruter-live-capture.md](/home/krl/git/check_sip/docs/runbooks/bruter-live-capture.md:1)
+1. [docs/runbooks/bruter-api-debug-2026-06-01.md](../runbooks/bruter-api-debug-2026-06-01.md)
+2. [docs/runbooks/vscode-ollama-model-run-log.md](../runbooks/vscode-ollama-model-run-log.md)
+3. [docs/archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md](../archive/early-vscode-validation/vscode-ollama-acceptance-scenario.md)
+4. [docs/runbooks/bruter-live-capture.md](../runbooks/bruter-live-capture.md)

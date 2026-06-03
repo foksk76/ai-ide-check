@@ -102,8 +102,8 @@ python tools\check_ollama_anthropic_surface.py
 
 Reports:
 
-- [Markdown summary](../ollama-anthropic-surface-report.md)
-- [Raw JSON evidence](../ollama-anthropic-surface-report.json)
+- [Markdown summary](../reports/ollama-anthropic-surface-report.md)
+- [Raw JSON evidence](../reports/raw/ollama-anthropic-surface-report.json)
 
 The local probe used:
 

@@ -8,6 +8,9 @@ The current project focus remains local coder-agent evaluation. Reverse
 engineering must be developed as a separate track with its own fixtures,
 metrics, artifacts, and safety boundaries.
 
+Current stand roles are defined in
+[Reverse Engineering Model System Roles](reverse-engineering-model-system-roles.md).
+
 ## Confirmed Intent
 
 Build an isolated learning lab for practicing vulnerability research with AI

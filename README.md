@@ -1,169 +1,105 @@
-# Локальные модели для Claude Code: практическая проверка на Radeon RX 6800
+﻿# ai-ide-check
 
-## Для чего нужен этот проект
+Проект для проверки локальных моделей в связке с Claude Code и Ollama.
 
-Этот проект помогает выбрать локальную модель для работы с кодом через Claude
-Code и Ollama. Проверяется не умение поддержать разговор, а способность
-прочитать файлы, внести правку, запустить команду и честно сообщить результат.
+Главная цель сейчас: выбрать практичную локальную модель для задач с кодом и
+подготовить отдельный безопасный трек для обучения реверс-инжинирингу с
+помощью ИИ.
 
-Стенд собран на одном компьютере: Windows 11, Claude Code CLI, Claude Code для
-VS Code, Ollama и AMD Radeon RX 6800 с `16` ГБ видеопамяти. Основной путь
-проверки автоматический и безголовый. VS Code остаётся отдельным сравнением.
+## Текущий контур
 
-## Схема проверки
+| Часть | Роль |
+|---|---|
+| Windows 11 + Radeon RX 6800 | Основной стенд локального LLM-инференса: Ollama, Claude Code CLI, Claude Code for VS Code. |
+| Proxmox VE 9.2 без GPU | Изолированная лаборатория для статического анализа, VM/LXC, воспроизведения гипотез и артефактов. |
+| Cloud LLM | Ручная эскалация сложных случаев, когда локальной модели не хватает. |
 
-Для каждой модели создаётся отдельная временная копия задачи. Claude Code
-получает одинаковый запрос, использует инструменты и запускает тесты. Затем
-отдельный скрипт ещё раз проверяет код. Это важная деталь: уверенный ответ
-модели сам по себе не считается доказательством.
+Рабочее правило простое: Windows думает, Proxmox проверяет.
 
-![Как проходит один прогон](docs/assets/testing-process.png)
+## Где начинать
 
-Проверка идёт слоями. Сначала отсеиваются недоступные модели и модели без
-рабочих инструментов. Затем измеряются качество кода и повторяемость. Только
-после этого имеет смысл сравнивать поведение в VS Code.
+| Нужно | Файл |
+|---|---|
+| Понять структуру документации | [docs/README.md](docs/README.md) |
+| Узнать текущий план | [docs/plans/current-roadmap.md](docs/plans/current-roadmap.md) |
+| Посмотреть отложенные модели | [docs/plans/model-retry-backlog.md](docs/plans/model-retry-backlog.md) |
+| Проверить контракт стенда | [docs/contracts/vscode-ollama-agent-contract.md](docs/contracts/vscode-ollama-agent-contract.md) |
+| Разобраться с reverse-engineering треком | [docs/specs/reverse-engineering-model-evaluation-idea.md](docs/specs/reverse-engineering-model-evaluation-idea.md) |
+| Посмотреть роли Windows/Proxmox | [docs/specs/reverse-engineering-model-system-roles.md](docs/specs/reverse-engineering-model-system-roles.md) |
 
-![Уровни отбора модели](docs/assets/testing-levels.png)
+## Автоматические проверки
 
-## Условия стенда
+Основные скрипты лежат в [tools/](tools/README.md).
 
-В дальнейший отбор проходят только профили, которые полностью помещаются в
-видеопамять. Если Ollama показывает выгрузку в обычную память, модель
-откладывается: на одном RX 6800 такой режим слишком сильно меняет скорость.
+Windows headless-проверка Claude Code + Ollama:
 
-| Модель | Рабочее окно | Размещение | Статус |
-|---|---:|---|---|
-| `qwen3:8b-q4_K_M-ctx40k` | `40960` | `100% GPU` | Контрольный профиль |
-| `granite4.1:8b-ctx32k` | `32768` | `100% GPU` | Допущен |
-| `gemma4:e4b-ctx128k` | `131072` | `100% GPU` | Допущен с оговоркой о повторяемости |
-| `ministral-3:8b-ctx32k` | `32768` | `100% GPU` | Допущен |
-| `gpt-oss:20b-ctx32k` | `32768` | `100% GPU` | Допущен |
-
-![Размер профиля в видеопамяти](docs/assets/model-gpu-footprint.png)
-
-![Выбранное рабочее окно](docs/assets/model-context-window.png)
-
-## Первый набор задач
-
-Первый набор намеренно небольшой. Он не заменяет большой сравнительный тест,
-но быстро показывает, умеет ли модель довести правку до работающего состояния.
-
-### Задача 1. Нормализация меток
-
-Нужно реализовать функцию `normalize_tags(tags)`: очистить пробелы, привести
-строки к нижнему регистру, убрать пустые значения и повторы, сохранив порядок.
-
-Пример:
-
-```python
-normalize_tags([" Python ", "OLLAMA", "python", "", "  Git  "])
-# ["python", "ollama", "git"]
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\run_claude_ollama_headless.ps1 `
+  -StandId win11-local-rx6800 `
+  -Models gpt-oss:20b-ctx32k `
+  -Stages handshake,tool,agent `
+  -RequireFullGpu
 ```
 
-Дополнительные тесты проверяют пустой список и ошибки типов.
+Coder fixture benchmark:
 
-### Задача 2. Объединение диапазонов
-
-Нужно исправить `merge_ranges(intervals)`: отсортировать диапазоны, объединить
-пересечения и соседние диапазоны, не изменяя исходный список.
-
-Пример:
-
-```python
-merge_ranges([[1, 2], [3, 4], [8, 9]])
-# [[1, 4], [8, 9]]
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\run_coder_fixture_bench.ps1 `
+  -StandId win11-local-rx6800 `
+  -Models gpt-oss:20b-ctx32k,ministral-3:8b-ctx32k,gemma4:e4b-ctx128k `
+  -RequireFullGpu
 ```
 
-Дополнительные тесты проверяют порядок входа, пустой список и неверные
-диапазоны.
+Результаты автоматических прогонов пишутся в `.artifacts/`. Этот каталог
+намеренно не хранится в Git.
 
-## Один показательный ход рассуждения
+## Модели
 
-В артефакте `gpt-oss:20b-ctx32k` для второй задачи есть хороший пример
-прикладного рассуждения. Модель заметила, что одной замены условия недостаточно:
+Текущий основной кандидат:
 
-1. Вход может быть не отсортирован, поэтому нужна отсортированная копия.
-2. Нельзя менять исходный список.
-3. Соседние целочисленные диапазоны требуют условия `start <= previous_end + 1`.
-4. До объединения нужно проверить форму диапазона и порядок границ.
-
-После этого модель внесла правку и получила `6/6` успешных тестов. Итоговый код:
-
-```python
-def merge_ranges(intervals):
-    """Return sorted intervals with overlaps and touching ranges merged."""
-    if not intervals:
-        return []
-
-    sorted_intervals = sorted(intervals, key=lambda x: x[0])
-    merged = []
-    for interval in sorted_intervals:
-        if not isinstance(interval, (list, tuple)) or len(interval) != 2:
-            raise ValueError("Each interval must contain exactly two numbers")
-        start, end = interval
-        if not isinstance(start, (int, float)) or not isinstance(end, (int, float)):
-            raise ValueError("Interval bounds must be numbers")
-        if start > end:
-            raise ValueError("Interval start must not exceed end")
-
-        if merged and start <= merged[-1][1] + 1:
-            merged[-1][1] = max(merged[-1][1], end)
-        else:
-            merged.append([start, end])
-    return merged
+```text
+gpt-oss:20b-ctx32k
 ```
 
-Это небольшой пример, но в нём видна разница между механической заменой строки
-и разбором требований.
+Ограниченный сравнительный кандидат:
 
-## Результаты первого круга
+```text
+ministral-3:8b-ctx32k
+```
 
-| Модель | Пройдено | Время двух ответов | Наблюдение |
-|---|---:|---:|---|
-| `gpt-oss:20b-ctx32k` | `2/2` | `293.8` с | Обе задачи решены |
-| `ministral-3:8b-ctx32k` | `2/2` | `817.7` с | Обе задачи решены, но медленнее |
-| `gemma4:e4b-ctx128k` | `2/2` | `298.3` с | Отдельный повтор простой задачи не прошёл |
-| `granite4.1:8b-ctx32k` | `1/2` | `374.3` с | Не объединены соседние диапазоны |
-| `qwen3:8b-q4_K_M-ctx40k` | `0/2` | `1253.0` с | Первая правка не применена, вторая неполна |
+Профили Ollama находятся в [tools/modelfiles/](tools/modelfiles/README.md).
+Модели, которые не прошли текущий стенд, но могут быть полезны на другой
+конфигурации, записаны в [model-retry-backlog.md](docs/plans/model-retry-backlog.md).
 
-![Результаты задач с тестами](docs/assets/model-coder-fixture-score.png)
+## Отчеты и статьи
 
-Время пока считается ориентиром. Например, повтор простой задачи у GPT-OSS
-занял `720.7` с вместо `133.8` с в первом круге. Для честного сравнения нужны
-серии запусков, а не один особенно бодрый вторник.
+Отчеты для человека, статьи и графики — это отдельная ручная публикационная
+функция, а не часть обязательного автоматического прогона.
 
-## Ограничения текущего результата
+Они живут в [docs/reports/](docs/reports/README.md). Скрипты для подготовки
+публикационных материалов:
 
-Первый набор измеряет качество правки кода, но ещё не закрывает полный контракт
-агента. В запросах заранее назван нужный файл. Следующий этап должен проверить
-самостоятельный поиск файла, повторяемость и точность итогового ответа.
+| Скрипт | Назначение |
+|---|---|
+| `tools/generate_readme_charts.ps1` | Собрать PNG-графики для статьи или отчета. |
+| `tools/export_readme_report.py` | Экспортировать подготовленный Markdown-отчет в PDF. |
 
-Отдельно проверен `nemotron-3-nano:4b-ctx32k`: он занимает всего `5.7` ГБ и
-остаётся на `100% GPU`, но не выполняет задания Claude Code. Поэтому в
-сравнительные графики рабочих профилей он не включён.
+Идея такая: сначала собираем проверяемые артефакты и runbook-записи, потом
+человек вручную решает, что достойно стать отчетом. Автоматика меряет, человек
+рассказывает.
 
-## Промежуточный вывод
+## Данные и артефакты
 
-На текущем стенде основной кандидат для следующего этапа:
-`gpt-oss:20b-ctx32k`. Он полностью помещается в видеопамять и прошёл обе
-задачи с внешней проверкой тестами.
+| Место | Что хранится |
+|---|---|
+| `.artifacts/` | Сырые локальные прогоны, транскрипты, временные worktree. Не в Git. |
+| `docs/runbooks/runs/` | Краткие датированные записи проверок. |
+| `docs/reports/` | Человеческие отчеты, PDF, компактные сводки. |
+| `docs/archive/` | Исторические документы, которые больше не являются текущим планом. |
 
-Вторым кандидатом остаётся `ministral-3:8b-ctx32k`. Gemma показывает полезные
-способности, но требует проверки повторяемости. Granite и Qwen пока разумнее
-оставить контрольными профилями.
+## Следующий шаг
 
-Следующий шаг: полный CLI-сценарий для GPT-OSS и Ministral без подсказки имени
-файла, затем по три повтора задач для оценки устойчивости.
-
-## Подробности и источники
-
-- [PDF-версия отчёта от 2026-06-02](docs/reports/2026-06-02-local-model-evaluation-report.pdf)
-- [План следующих этапов](docs/plans/vscode-ollama-agent-plan.md)
-- [Контракт проверки](docs/contracts/vscode-ollama-agent-contract.md)
-- [Стратегия оценки](docs/specs/coder-model-benchmark-strategy.md)
-- [Первый круг задач с тестами](docs/runbooks/runs/2026-06-02-coder-fixture-first-pass.md)
-- [Проверка GPT-OSS 20B](docs/runbooks/runs/2026-06-02-gpt-oss-20b-ctx32k-full-gpu-gate.md)
-- [Ministral 3 в Ollama](https://ollama.com/library/ministral-3)
-- [Nemotron 3 Nano в Ollama](https://ollama.com/library/nemotron-3-nano)
-- [GPT-OSS в Ollama](https://ollama.com/library/gpt-oss)
-- [Рекомендации Ollama для Claude Code](https://ollama.com/blog/launch)
+Смотреть [current-roadmap.md](docs/plans/current-roadmap.md). На текущий момент
+следующий рабочий шаг — reliability pass для `gpt-oss:20b-ctx32k`,
+`ministral-3:8b-ctx32k` и `gemma4:e4b-ctx128k`, плюс подготовка первого
+статического reverse-engineering fixture без доступа к динамическому стенду.

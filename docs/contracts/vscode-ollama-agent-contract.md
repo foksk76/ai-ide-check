@@ -51,11 +51,11 @@ changes enough that results are no longer directly comparable.
 
 Current detailed Windows snapshot:
 
-- [Windows Local Stand Snapshot](../runbooks/windows-local-stand-2026-06-01.md)
+- [Windows Local Stand Snapshot](../stands/windows-local-rx6800-2026-06-01.md)
 
 Current detailed Ubuntu snapshot:
 
-- [Ubuntu Local Stand Snapshot](../runbooks/ubuntu-local-stand-2026-06-02.md)
+- [Ubuntu Local Stand Snapshot](../stands/ubuntu-local-rtx3080-2026-06-02.md)
 
 Use the reusable record when adding a stand:
 

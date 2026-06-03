@@ -1,4 +1,4 @@
-# Acceptance Scenario: VS Code Agent + Ollama End-to-End
+﻿# Acceptance Scenario: VS Code Agent + Ollama End-to-End
 
 ## Objective
 
@@ -95,11 +95,11 @@ The agent is expected to use these classes of actions:
 
 The exact reads may vary, but the agent should consult some subset of:
 
-- [docs/contracts/vscode-ollama-agent-contract.md](/home/krl/git/check_sip/docs/contracts/vscode-ollama-agent-contract.md:1)
-- [docs/specs/vscode-ollama-agent-spec.md](/home/krl/git/check_sip/docs/specs/vscode-ollama-agent-spec.md:1)
-- [docs/plans/vscode-ollama-agent-plan.md](/home/krl/git/check_sip/docs/plans/vscode-ollama-agent-plan.md:1)
-- [docs/ollama-model-compatibility-report.md](/home/krl/git/check_sip/docs/ollama-model-compatibility-report.md:1)
-- [tools/check_ollama_model_compat.py](/home/krl/git/check_sip/tools/check_ollama_model_compat.py:1)
+- [docs/contracts/vscode-ollama-agent-contract.md](../contracts/vscode-ollama-agent-contract.md)
+- [docs/archive/early-vscode-validation/vscode-ollama-agent-spec.md](../archive/early-vscode-validation/vscode-ollama-agent-spec.md)
+- [docs/plans/current-roadmap.md](../plans/current-roadmap.md)
+- [docs/reports/ollama-model-compatibility-report.md](../reports/ollama-model-compatibility-report.md)
+- [tools/check_ollama_model_compat.py](../tools/check_ollama_model_compat.py)
 
 ## Expected File Outcome
 
