@@ -8,7 +8,7 @@ param(
     [string[]]$Stages = @("handshake", "tool", "agent"),
     [string]$StandId = "win11-local-rx6800",
     [string]$Endpoint = "http://localhost:11434",
-    [int]$TimeoutSeconds = 600,
+    [int]$TimeoutSeconds = 900,
     [string]$ArtifactsRoot = ".artifacts\claude-ollama-headless",
     [switch]$RequireFullGpu,
     [switch]$KeepWorktrees
