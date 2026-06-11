@@ -1,0 +1,70 @@
+{
+  "models": [
+    {
+      "slug": "gemma4:12b-it-qat",
+      "display_name": "Gemma 4 12B IT QAT",
+      "description": "Gemma 4 served by remote Ollama",
+      "supported_reasoning_levels": [],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "supported_in_api": true,
+      "priority": 0,
+      "availability_nux": null,
+      "upgrade": null,
+      "base_instructions": "You are a coding agent. Inspect the repository, use shell tools, edit files carefully, and validate changes.",
+      "supports_reasoning_summaries": false,
+      "support_verbosity": false,
+      "default_verbosity": null,
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text",
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": false,
+      "context_window": 131072,
+      "max_context_window": 131072,
+      "auto_compact_token_limit": 98304,
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "supports_search_tool": false,
+      "use_responses_lite": false
+    },
+    {
+      "slug": "gemma4:31b-cloud",
+      "display_name": "Gemma 4 31B Cloud",
+      "description": "Cloud model for code review through remote Ollama",
+      "supported_reasoning_levels": [],
+      "shell_type": "shell_command",
+      "visibility": "list",
+      "supported_in_api": true,
+      "priority": 0,
+      "availability_nux": null,
+      "upgrade": null,
+      "base_instructions": "You are a coding agent. Inspect the repository, use shell tools, edit files carefully, and validate changes.",
+      "supports_reasoning_summaries": false,
+      "support_verbosity": false,
+      "default_verbosity": null,
+      "apply_patch_tool_type": "freeform",
+      "web_search_tool_type": "text",
+      "truncation_policy": {
+        "mode": "tokens",
+        "limit": 10000
+      },
+      "supports_parallel_tool_calls": false,
+      "context_window": 131072,
+      "max_context_window": 131072,
+      "auto_compact_token_limit": 98304,
+      "effective_context_window_percent": 95,
+      "experimental_supported_tools": [],
+      "input_modalities": [
+        "text"
+      ],
+      "supports_search_tool": false,
+      "use_responses_lite": false
+    }
+  ]
+}

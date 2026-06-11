@@ -1,0 +1,33 @@
+model = "gemma4:31b-cloud"
+review_model = "gemma4:31b-cloud"
+plan_mode_reasoning_effort = "high"
+model_provider = "remote_ollama"
+model_catalog_json = "/root/.codex/model_catalog.json"
+
+# Фактический контекст Ollama и значение здесь должны совпадать.
+model_context_window = 131072
+model_auto_compact_token_limit = 98304
+
+model_supports_reasoning_summaries = false
+
+approval_policy = "on-request"
+sandbox_mode = "danger-full-access"
+approvals_reviewer = "auto_review"
+model_reasoning_effort = "none"
+
+[model_providers.remote_ollama]
+name = "Ollama on bruter"
+base_url = "http://bruter:11434/v1"
+wire_api = "responses"
+requires_openai_auth = false
+
+request_max_retries = 2
+stream_max_retries = 2
+stream_idle_timeout_ms = 600000
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "reasoning", "git-branch", "run-state", "permissions", "approval-mode", "context-remaining", "context-window-size", "used-tokens"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
